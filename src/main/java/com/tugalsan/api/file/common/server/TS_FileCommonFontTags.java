@@ -1,6 +1,6 @@
 package com.tugalsan.api.file.common.server;
 
-public class TS_FileTmcrCodeFontTags {
+public class TS_FileCommonFontTags {
 
     public static String CODE_SET_FONT_SIZE() {
         return "SET_FONT_SIZE";

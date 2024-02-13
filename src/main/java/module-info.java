@@ -1,3 +1,3 @@
-module com.tugalsan.api.file.abs {
-    exports com.tugalsan.api.file.abs.server;
+module com.tugalsan.api.file.common {
+    exports com.tugalsan.api.file.common.server;
 }

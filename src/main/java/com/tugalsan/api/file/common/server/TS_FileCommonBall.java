@@ -53,7 +53,7 @@ public class TS_FileCommonBall {
     public TGS_Url url;
     public Path dirDat;
 
-    public String customDomain;
+    public TGS_Url customDomain;
 
     @Override
     public String toString() {
@@ -66,7 +66,7 @@ public class TS_FileCommonBall {
             String funcName, String fileNameLabel, TGS_Url url,
             List<String> requestedFileTypes, Path dirDat,
             Path fontPathBold, Path fontPathBoldItalic, Path fontPathItalic, Path fontPathRegular,
-            String customDomain, TGS_Callable<String> defaultFontColor
+            TGS_Url customDomain, TGS_Callable<String> defaultFontColor
     ) {
         this.macroLines = macroLines;
         this.username = username;

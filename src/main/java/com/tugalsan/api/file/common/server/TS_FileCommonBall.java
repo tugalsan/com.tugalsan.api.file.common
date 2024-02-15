@@ -54,6 +54,7 @@ public class TS_FileCommonBall {
     public Path dirDat;
 
     public TGS_Url customDomain;
+    public TGS_Url favIconPng;
 
     @Override
     public String toString() {
@@ -66,7 +67,7 @@ public class TS_FileCommonBall {
             String funcName, String fileNameLabel, TGS_Url url,
             List<String> requestedFileTypes, Path dirDat,
             Path fontPathBold, Path fontPathBoldItalic, Path fontPathItalic, Path fontPathRegular,
-            TGS_Url customDomain, TGS_Callable<String> defaultFontColor
+            TGS_Url customDomain, TGS_Url favIconPng
     ) {
         this.macroLines = macroLines;
         this.username = username;
@@ -81,11 +82,12 @@ public class TS_FileCommonBall {
         this.fontPathItalic = fontPathItalic;
         this.fontPathRegular = fontPathRegular;
         this.customDomain = customDomain;
+        this.favIconPng = favIconPng;
 
         this.fontItalic = false;
         this.fontItalic = false;
         this.fontHeight = 12;
-        this.fontColor = defaultFontColor.call();
+        this.fontColor = TS_FileCommonFontTags.CODE_TOKEN_FONT_COLOR_BLACK();
         this.runReport = false;
         this.tablename = tablename;
         this.now = TGS_Time.of();

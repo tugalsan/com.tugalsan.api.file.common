@@ -1,5 +1,6 @@
 package com.tugalsan.api.file.common.server;
 
+import com.tugalsan.api.callable.client.TGS_CallableType1;
 import com.tugalsan.api.list.client.*;
 import java.nio.file.*;
 import com.tugalsan.api.time.client.*;
@@ -56,6 +57,8 @@ public class TS_FileCommonBall {
     public TGS_Url customDomain;
     public TGS_Url favIconPng;
 
+    public TGS_CallableType1<TGS_Url, TGS_Url> manipulateInjectCode;
+
     @Override
     public String toString() {
         return TS_FileCommonBall.class.getSimpleName() + "{" + "runReport=" + runReport + ", username=" + username + ", tablename=" + tablename + ", selectedId=" + selectedId + ", funcName=" + funcName + ", userDotTablename=" + userDotTablename + ", url=" + url + ", dirDat=" + dirDat + '}';
@@ -67,7 +70,7 @@ public class TS_FileCommonBall {
             String funcName, String fileNameLabel, TGS_Url url,
             List<String> requestedFileTypes, Path dirDat,
             Path fontPathBold, Path fontPathBoldItalic, Path fontPathItalic, Path fontPathRegular,
-            TGS_Url customDomain, TGS_Url favIconPng, String domainName
+            TGS_Url customDomain, TGS_Url favIconPng, String domainName, TGS_CallableType1<TGS_Url, TGS_Url> manipulateInjectCode
     ) {
         this.macroLines = macroLines;
         this.username = username;
@@ -84,6 +87,7 @@ public class TS_FileCommonBall {
         this.customDomain = customDomain;
         this.favIconPng = favIconPng;
         this.domainName = domainName;
+        this.manipulateInjectCode = manipulateInjectCode;
 
         this.fontItalic = false;
         this.fontItalic = false;

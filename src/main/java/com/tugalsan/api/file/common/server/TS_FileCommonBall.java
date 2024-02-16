@@ -44,6 +44,7 @@ public class TS_FileCommonBall {
     public List<String> macroLines;
     public String username;
     public String tablename;
+    public String domainName;
     public Long selectedId;
     public String funcName;
     public Integer cellHeight;
@@ -66,7 +67,7 @@ public class TS_FileCommonBall {
             String funcName, String fileNameLabel, TGS_Url url,
             List<String> requestedFileTypes, Path dirDat,
             Path fontPathBold, Path fontPathBoldItalic, Path fontPathItalic, Path fontPathRegular,
-            TGS_Url customDomain, TGS_Url favIconPng
+            TGS_Url customDomain, TGS_Url favIconPng, String domainName
     ) {
         this.macroLines = macroLines;
         this.username = username;
@@ -82,6 +83,7 @@ public class TS_FileCommonBall {
         this.fontPathRegular = fontPathRegular;
         this.customDomain = customDomain;
         this.favIconPng = favIconPng;
+        this.domainName = domainName;
 
         this.fontItalic = false;
         this.fontItalic = false;

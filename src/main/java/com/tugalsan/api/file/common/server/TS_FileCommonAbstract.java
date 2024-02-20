@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import java.nio.file.Path;
 import java.util.Objects;
 
-public abstract class TS_FileCommonInterface {
+public abstract class TS_FileCommonAbstract {
 
     final public static boolean FILENAME_CHAR_SUPPORT_TURKISH = true;
     final public static boolean FILENAME_CHAR_SUPPORT_SPACE = true;
@@ -29,14 +29,14 @@ public abstract class TS_FileCommonInterface {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        var other = (TS_FileCommonInterface) obj;
+        var other = (TS_FileCommonAbstract) obj;
         if (!Objects.equals(this.localFile, other.localFile)) {
             return false;
         }
         return Objects.equals(this.remoteFile, other.remoteFile);
     }
 
-    public TS_FileCommonInterface(boolean enabled, Path localFile, TGS_Url remoteFile) {
+    public TS_FileCommonAbstract(boolean enabled, Path localFile, TGS_Url remoteFile) {
         this.localFile = localFile;
         this.remoteFile = remoteFile;
         isEnabled = enabled;

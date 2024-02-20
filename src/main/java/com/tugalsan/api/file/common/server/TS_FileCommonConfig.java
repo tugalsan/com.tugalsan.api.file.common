@@ -11,9 +11,9 @@ import java.util.*;
 import com.tugalsan.api.url.client.TGS_Url;
 import java.util.stream.IntStream;
 
-public class TS_FileCommonBall {
+public class TS_FileCommonConfig {
 
-    final private static TS_Log d = TS_Log.of(false, TS_FileCommonBall.class);
+    final private static TS_Log d = TS_Log.of(false, TS_FileCommonConfig.class);
 
     public String fontColor;
     public Path fontPathBold;
@@ -77,10 +77,10 @@ public class TS_FileCommonBall {
 
     @Override
     public String toString() {
-        return TS_FileCommonBall.class.getSimpleName() + "{" + "runReport=" + runReport + ", username=" + username + ", tablename=" + tablename + ", selectedId=" + selectedId + ", funcName=" + funcName + ", userDotTablename=" + userDotTablename + ", url=" + url + ", dirDat=" + dirDat + '}';
+        return TS_FileCommonConfig.class.getSimpleName() + "{" + "runReport=" + runReport + ", username=" + username + ", tablename=" + tablename + ", selectedId=" + selectedId + ", funcName=" + funcName + ", userDotTablename=" + userDotTablename + ", url=" + url + ", dirDat=" + dirDat + '}';
     }
 
-    public TS_FileCommonBall(
+    public TS_FileCommonConfig(
             List<String> macroLines, String username,
             String tablename, Long selectedId,
             String funcName, String fileNameLabel, TGS_Url url,

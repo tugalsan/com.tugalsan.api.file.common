@@ -4,12 +4,16 @@ import com.tugalsan.api.callable.client.TGS_CallableType1;
 import com.tugalsan.api.callable.client.TGS_CallableType2;
 import com.tugalsan.api.callable.client.TGS_CallableType5;
 import com.tugalsan.api.list.client.*;
+import com.tugalsan.api.log.server.TS_Log;
 import java.nio.file.*;
 import com.tugalsan.api.time.client.*;
 import java.util.*;
 import com.tugalsan.api.url.client.TGS_Url;
+import java.util.stream.IntStream;
 
 public class TS_FileCommonBall {
+
+    final private static TS_Log d = TS_Log.of(false, TS_FileCommonBall.class);
 
     public String fontColor;
     public Path fontPathBold;
@@ -70,7 +74,7 @@ public class TS_FileCommonBall {
     public TGS_CallableType1<String, CharSequence> libTableServletUtils_URL_SERVLET_FETCH_TBL_FILE;
     public TGS_CallableType1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_PUBLIC;
     public TGS_CallableType1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_USER;
-    
+
     @Override
     public String toString() {
         return TS_FileCommonBall.class.getSimpleName() + "{" + "runReport=" + runReport + ", username=" + username + ", tablename=" + tablename + ", selectedId=" + selectedId + ", funcName=" + funcName + ", userDotTablename=" + userDotTablename + ", url=" + url + ", dirDat=" + dirDat + '}';
@@ -84,14 +88,49 @@ public class TS_FileCommonBall {
             Path fontPathBold, Path fontPathBoldItalic, Path fontPathItalic, Path fontPathRegular,
             TGS_Url customDomain, TGS_Url favIconPng, String domainName,
             TGS_CallableType1<TGS_Url, TGS_Url> manipulateInjectCode,
-            Path dirDatTbl,Path dirDatPub, Path dirDatUsr, Path dirDatUsrTmp,
+            Path dirDatTbl, Path dirDatPub, Path dirDatUsr, Path dirDatUsrTmp,
             TGS_CallableType5<List<String>, String, String, Long, String, Boolean> libTableFileList_getFileNames_DataIn,
             TGS_CallableType2<Path, String, String> libTableFileDir_datTblTblnameColname,
-             TGS_CallableType2<TGS_Url, String, Boolean> libTableFileGetUtils_urlUsrTmp,
-             TGS_CallableType1<String, CharSequence> libTableServletUtils_URL_SERVLET_FETCH_TBL_FILE,
-             TGS_CallableType1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_PUBLIC,
-             TGS_CallableType1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_USER
+            TGS_CallableType2<TGS_Url, String, Boolean> libTableFileGetUtils_urlUsrTmp,
+            TGS_CallableType1<String, CharSequence> libTableServletUtils_URL_SERVLET_FETCH_TBL_FILE,
+            TGS_CallableType1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_PUBLIC,
+            TGS_CallableType1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_USER
     ) {
+        if (d.infoEnable) {
+            IntStream.range(0, macroLines.size()).forEachOrdered(i -> {
+                d.ci("macroLines", i, macroLines.get(i));
+            });
+            d.ci("username", username);
+            d.ci("tablename", tablename);
+            d.ci("selectedId", selectedId);
+            d.ci("funcName", funcName);
+            d.ci("fileNameLabel", fileNameLabel);
+            d.ci("url", url);
+            IntStream.range(0, requestedFileTypes.size()).forEachOrdered(i -> {
+                d.ci("requestedFileTypes", i, requestedFileTypes.get(i));
+            });
+            d.ci("dirDat", dirDat);
+            d.ci("fontPathBold", fontPathBold);
+            d.ci("fontPathBoldItalic", fontPathBoldItalic);
+            d.ci("fontPathItalic", fontPathItalic);
+            d.ci("fontPathRegular", fontPathRegular);
+            d.ci("customDomain", customDomain);
+            d.ci("favIconPng", favIconPng);
+            d.ci("domainName", domainName);
+            d.ci("manipulateInjectCode", manipulateInjectCode != null);
+            d.ci("dirDatTbl", dirDatTbl);
+            d.ci("dirDatPub", dirDatPub);
+            d.ci("dirDatUsr", dirDatUsr);
+            d.ci("dirDatUsrTmp", dirDatUsrTmp);
+            d.ci("dirDatTbl", dirDatTbl);
+            d.ci("dirDatTbl", dirDatTbl);
+            d.ci("libTableFileList_getFileNames_DataIn", libTableFileList_getFileNames_DataIn != null);
+            d.ci("libTableFileDir_datTblTblnameColname", libTableFileDir_datTblTblnameColname != null);
+            d.ci("libTableFileGetUtils_urlUsrTmp", libTableFileGetUtils_urlUsrTmp != null);
+            d.ci("libTableServletUtils_URL_SERVLET_FETCH_TBL_FILE", libTableServletUtils_URL_SERVLET_FETCH_TBL_FILE != null);
+            d.ci("libFileServletUtils_URL_SERVLET_FETCH_PUBLIC", libFileServletUtils_URL_SERVLET_FETCH_PUBLIC != null);
+            d.ci("libFileServletUtils_URL_SERVLET_FETCH_USER", libFileServletUtils_URL_SERVLET_FETCH_USER != null);
+        }
         this.macroLines = macroLines;
         this.username = username;
         this.selectedId = selectedId;

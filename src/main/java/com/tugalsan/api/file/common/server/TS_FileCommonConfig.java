@@ -20,6 +20,7 @@ public class TS_FileCommonConfig {
     public Path fontPathBoldItalic;
     public Path fontPathItalic;
     public Path fontPathRegular;
+    public Path fontPathPanUnicode;
     public float fontHeightK;
 
     //FILE NAMES
@@ -85,7 +86,7 @@ public class TS_FileCommonConfig {
             String tablename, Long selectedId,
             String funcName, String fileNameLabel, TGS_Url url,
             List<String> requestedFileTypes, Path dirDat,
-            Path fontPathBold, Path fontPathBoldItalic, Path fontPathItalic, Path fontPathRegular,
+            Path fontPathBold, Path fontPathBoldItalic, Path fontPathItalic, Path fontPathRegular, Path fontPathPanUnicode,
             TGS_Url customDomain, TGS_Url favIconPng, String domainName,
             TGS_CallableType1<TGS_Url, TGS_Url> manipulateInjectCode,
             Path dirDatTbl, Path dirDatPub, Path dirDatUsr, Path dirDatUsrTmp,
@@ -114,6 +115,7 @@ public class TS_FileCommonConfig {
             d.ci("fontPathBoldItalic", fontPathBoldItalic);
             d.ci("fontPathItalic", fontPathItalic);
             d.ci("fontPathRegular", fontPathRegular);
+            d.ci("fontPathPanUnicode", fontPathPanUnicode);
             d.ci("customDomain", customDomain);
             d.ci("favIconPng", favIconPng);
             d.ci("domainName", domainName);
@@ -143,6 +145,7 @@ public class TS_FileCommonConfig {
         this.fontPathBoldItalic = fontPathBoldItalic;
         this.fontPathItalic = fontPathItalic;
         this.fontPathRegular = fontPathRegular;
+        this.fontPathPanUnicode = fontPathPanUnicode;
         this.customDomain = customDomain;
         this.favIconPng = favIconPng;
         this.domainName = domainName;

@@ -206,10 +206,16 @@ public class TS_FileCommonConfig {
     }
 
     public boolean isPanNeeded(int codePoint) {
-        return !(fontAwtBold.canDisplay(codePoint)
-                && fontAwtBoldItalic.canDisplay(codePoint)
-                && fontAwtItalic.canDisplay(codePoint)
-                && fontAwtRegular.canDisplay(codePoint));
+        if (fontBold && fontItalic) {
+            return fontAwtBoldItalic.canDisplay(codePoint);
+        }
+        if (fontBold) {
+            return fontAwtBold.canDisplay(codePoint);
+        }
+        if (fontItalic) {
+            return fontAwtItalic.canDisplay(codePoint);
+        }
+        return fontAwtRegular.canDisplay(codePoint);
     }
     private Font fontAwtBoldItalic;
     private Font fontAwtBold;

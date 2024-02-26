@@ -7,20 +7,40 @@ import com.tugalsan.api.list.client.*;
 import com.tugalsan.api.log.server.TS_Log;
 import java.nio.file.*;
 import com.tugalsan.api.time.client.*;
+import com.tugalsan.api.unsafe.client.TGS_UnSafe;
 import java.util.*;
 import com.tugalsan.api.url.client.TGS_Url;
+import java.awt.Font;
 import java.util.stream.IntStream;
 
 public class TS_FileCommonConfig {
 
     final private static TS_Log d = TS_Log.of(false, TS_FileCommonConfig.class);
 
+    private final Path fontPathPanUnicode;
+    public boolean fontPanUnicodeActive = false;
+
+    public Path fontPathBold() {
+        return fontPanUnicodeActive ? fontPathPanUnicode : fontPathBold;
+    }
+    final private Path fontPathBold;
+
+    public Path fontPathBoldItalic() {
+        return fontPanUnicodeActive ? fontPathPanUnicode : fontPathBoldItalic;
+    }
+    private final Path fontPathBoldItalic;
+
+    public Path fontPathItalic() {
+        return fontPanUnicodeActive ? fontPathPanUnicode : fontPathItalic;
+    }
+    final private Path fontPathItalic;
+
+    public Path fontPathRegular() {
+        return fontPanUnicodeActive ? fontPathPanUnicode : fontPathRegular;
+    }
+    final private Path fontPathRegular;
+
     public String fontColor;
-    public Path fontPathBold;
-    public Path fontPathBoldItalic;
-    public Path fontPathItalic;
-    public Path fontPathRegular;
-    public Path fontPathPanUnicode;
     public float fontHeightK;
 
     //FILE NAMES
@@ -31,7 +51,7 @@ public class TS_FileCommonConfig {
     public String fileNameLabel;
 
     //MACRO BASE
-    public TGS_Time now;
+    final public TGS_Time now;
     public String doFind_gotoLabel = null;
     public String macroLine;
     public String macroLineUpperCase;
@@ -49,32 +69,32 @@ public class TS_FileCommonConfig {
 
     //GLOBALS
     public boolean runReport;
-    public List<String> macroLines;
-    public String username;
-    public String tablename;
-    public String domainName;
-    public Long selectedId;
-    public String funcName;
+    final public List<String> macroLines;
+    final public String username;
+    final public String tablename;
+    final public String domainName;
+    final public Long selectedId;
+    final public String funcName;
     public Integer cellHeight;
-    public String userDotTablename;
+    final public String userDotTablename;
 
-    public TGS_Url url;
-    public Path dirDat;
-    public Path dirDatTbl;
-    public Path dirDatPub;
-    public Path dirDatUsr;
-    public Path dirDatUsrTmp;
+    final public TGS_Url url;
+    final public Path dirDat;
+    final public Path dirDatTbl;
+    final public Path dirDatPub;
+    final public Path dirDatUsr;
+    final public Path dirDatUsrTmp;
 
-    public TGS_Url customDomain;
-    public TGS_Url favIconPng;
+    final public TGS_Url customDomain;
+    final public TGS_Url favIconPng;
 
-    public TGS_CallableType1<TGS_Url, TGS_Url> manipulateInjectCode;
-    public TGS_CallableType5<List<String>, String, String, Long, String, Boolean> libTableFileList_getFileNames_DataIn;
-    public TGS_CallableType2<Path, String, String> libTableFileDir_datTblTblnameColname;
-    public TGS_CallableType2<TGS_Url, String, Boolean> libTableFileGetUtils_urlUsrTmp;
-    public TGS_CallableType1<String, CharSequence> libTableServletUtils_URL_SERVLET_FETCH_TBL_FILE;
-    public TGS_CallableType1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_PUBLIC;
-    public TGS_CallableType1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_USER;
+    final public TGS_CallableType1<TGS_Url, TGS_Url> manipulateInjectCode;
+    final public TGS_CallableType5<List<String>, String, String, Long, String, Boolean> libTableFileList_getFileNames_DataIn;
+    final public TGS_CallableType2<Path, String, String> libTableFileDir_datTblTblnameColname;
+    final public TGS_CallableType2<TGS_Url, String, Boolean> libTableFileGetUtils_urlUsrTmp;
+    final public TGS_CallableType1<String, CharSequence> libTableServletUtils_URL_SERVLET_FETCH_TBL_FILE;
+    final public TGS_CallableType1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_PUBLIC;
+    final public TGS_CallableType1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_USER;
 
     @Override
     public String toString() {
@@ -171,6 +191,28 @@ public class TS_FileCommonConfig {
         this.mapVars = TGS_ListUtils.of();
         this.cellHeight = null;
         this.userDotTablename = this.username + "." + this.tablename;
+
+        TGS_UnSafe.run(() -> {
+            fontAwtBold = Font.createFont(Font.TRUETYPE_FONT, fontPathBold.toFile()).deriveFont(fontHeight);
+            fontAwtBoldItalic = Font.createFont(Font.TRUETYPE_FONT, fontPathBoldItalic.toFile()).deriveFont(fontHeight);
+            fontAwtItalic = Font.createFont(Font.TRUETYPE_FONT, fontPathItalic.toFile()).deriveFont(fontHeight);
+            fontAwtRegular = Font.createFont(Font.TRUETYPE_FONT, fontPathRegular.toFile()).deriveFont(fontHeight);
+//            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(fontAwtBold);
+//            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(fontAwtBoldItalic);
+//            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(fontAwtItalic);
+//            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(fontAwtRegular);
+        });
     }
+
+    public boolean isPanNeeded(int codePoint) {
+        return !(fontAwtBold.canDisplay(codePoint)
+                && fontAwtBoldItalic.canDisplay(codePoint)
+                && fontAwtItalic.canDisplay(codePoint)
+                && fontAwtRegular.canDisplay(codePoint));
+    }
+    private Font fontAwtBoldItalic;
+    private Font fontAwtBold;
+    private Font fontAwtItalic;
+    private Font fontAwtRegular;
 
 }

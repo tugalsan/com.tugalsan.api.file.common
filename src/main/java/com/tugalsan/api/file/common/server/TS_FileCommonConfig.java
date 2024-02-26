@@ -11,6 +11,7 @@ import com.tugalsan.api.unsafe.client.TGS_UnSafe;
 import java.util.*;
 import com.tugalsan.api.url.client.TGS_Url;
 import java.awt.Font;
+import java.awt.GraphicsEnvironment;
 import java.util.stream.IntStream;
 
 public class TS_FileCommonConfig {
@@ -197,10 +198,10 @@ public class TS_FileCommonConfig {
             fontAwtBoldItalic = Font.createFont(Font.TRUETYPE_FONT, fontPathBoldItalic.toFile()).deriveFont(fontHeight);
             fontAwtItalic = Font.createFont(Font.TRUETYPE_FONT, fontPathItalic.toFile()).deriveFont(fontHeight);
             fontAwtRegular = Font.createFont(Font.TRUETYPE_FONT, fontPathRegular.toFile()).deriveFont(fontHeight);
-//            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(fontAwtBold);
-//            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(fontAwtBoldItalic);
-//            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(fontAwtItalic);
-//            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(fontAwtRegular);
+            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(fontAwtBold);
+            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(fontAwtBoldItalic);
+            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(fontAwtItalic);
+            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(fontAwtRegular);
         });
     }
 

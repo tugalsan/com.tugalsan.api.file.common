@@ -102,7 +102,75 @@ public class TS_FileCommonConfig {
         return TS_FileCommonConfig.class.getSimpleName() + "{" + "runReport=" + runReport + ", username=" + username + ", tablename=" + tablename + ", selectedId=" + selectedId + ", funcName=" + funcName + ", userDotTablename=" + userDotTablename + ", url=" + url + ", dirDat=" + dirDat + '}';
     }
 
-    public TS_FileCommonConfig(
+    public static TS_FileCommonConfig of(
+            List<String> macroLines, String username,
+            String tablename, Long selectedId,
+            String funcName, String fileNameLabel, TGS_Url url,
+            List<String> requestedFileTypes, Path dirDat,
+            Path fontPathBold, Path fontPathBoldItalic, Path fontPathItalic, Path fontPathRegular, Path fontPathPanUnicode,
+            TGS_Url customDomain, TGS_Url favIconPng, String domainName,
+            Path dirDatTbl, Path dirDatPub, Path dirDatUsr, Path dirDatUsrTmp
+    ) {
+        TGS_CallableType1<TGS_Url, TGS_Url> manipulateInjectCode = _url -> _url;//SKIP LEGACY CODE
+        TGS_CallableType5<List<String>, String, String, Long, String, Boolean> libTableFileList_getFileNames_DataIn = (a, b, c, d, e) -> TGS_ListUtils.of();//SKIP LEGACY CODE
+        TGS_CallableType2<Path, String, String> libTableFileDir_datTblTblnameColname = (a, b) -> dirDatUsrTmp;//SKIP LEGACY CODE
+        TGS_CallableType2<TGS_Url, String, Boolean> libTableFileGetUtils_urlUsrTmp = (a, b) -> favIconPng;//SKIP LEGACY CODE
+        TGS_CallableType1<String, CharSequence> libTableServletUtils_URL_SERVLET_FETCH_TBL_FILE = a -> customDomain.toString();//SKIP LEGACY CODE
+        TGS_CallableType1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_PUBLIC = a -> customDomain.toString();//SKIP LEGACY CODE
+        TGS_CallableType1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_USER = a -> customDomain.toString();//SKIP LEGACY CODE
+        return of(
+                macroLines, username,
+                tablename, selectedId,
+                funcName, fileNameLabel, url,
+                requestedFileTypes, dirDat,
+                fontPathBold, fontPathBoldItalic, fontPathItalic, fontPathRegular, fontPathPanUnicode,
+                customDomain, favIconPng, domainName,
+                manipulateInjectCode,
+                dirDatTbl, dirDatPub, dirDatUsr, dirDatUsrTmp,
+                libTableFileList_getFileNames_DataIn,
+                libTableFileDir_datTblTblnameColname,
+                libTableFileGetUtils_urlUsrTmp,
+                libTableServletUtils_URL_SERVLET_FETCH_TBL_FILE,
+                libFileServletUtils_URL_SERVLET_FETCH_PUBLIC,
+                libFileServletUtils_URL_SERVLET_FETCH_USER
+        );
+    }
+
+    public static TS_FileCommonConfig of(
+            List<String> macroLines, String username,
+            String tablename, Long selectedId,
+            String funcName, String fileNameLabel, TGS_Url url,
+            List<String> requestedFileTypes, Path dirDat,
+            Path fontPathBold, Path fontPathBoldItalic, Path fontPathItalic, Path fontPathRegular, Path fontPathPanUnicode,
+            TGS_Url customDomain, TGS_Url favIconPng, String domainName,
+            TGS_CallableType1<TGS_Url, TGS_Url> manipulateInjectCode,
+            Path dirDatTbl, Path dirDatPub, Path dirDatUsr, Path dirDatUsrTmp,
+            TGS_CallableType5<List<String>, String, String, Long, String, Boolean> libTableFileList_getFileNames_DataIn,
+            TGS_CallableType2<Path, String, String> libTableFileDir_datTblTblnameColname,
+            TGS_CallableType2<TGS_Url, String, Boolean> libTableFileGetUtils_urlUsrTmp,
+            TGS_CallableType1<String, CharSequence> libTableServletUtils_URL_SERVLET_FETCH_TBL_FILE,
+            TGS_CallableType1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_PUBLIC,
+            TGS_CallableType1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_USER
+    ) {
+        return new TS_FileCommonConfig(
+                macroLines, username,
+                tablename, selectedId,
+                funcName, fileNameLabel, url,
+                requestedFileTypes, dirDat,
+                fontPathBold, fontPathBoldItalic, fontPathItalic, fontPathRegular, fontPathPanUnicode,
+                customDomain, favIconPng, domainName,
+                manipulateInjectCode,
+                dirDatTbl, dirDatPub, dirDatUsr, dirDatUsrTmp,
+                libTableFileList_getFileNames_DataIn,
+                libTableFileDir_datTblTblnameColname,
+                libTableFileGetUtils_urlUsrTmp,
+                libTableServletUtils_URL_SERVLET_FETCH_TBL_FILE,
+                libFileServletUtils_URL_SERVLET_FETCH_PUBLIC,
+                libFileServletUtils_URL_SERVLET_FETCH_USER
+        );
+    }
+
+    private TS_FileCommonConfig(
             List<String> macroLines, String username,
             String tablename, Long selectedId,
             String funcName, String fileNameLabel, TGS_Url url,

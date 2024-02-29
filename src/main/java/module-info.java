@@ -3,6 +3,7 @@ module com.tugalsan.api.file.common {
     requires com.tugalsan.api.url;
     requires com.tugalsan.api.callable;
     requires com.tugalsan.api.log;
+    requires com.tugalsan.api.file;
     requires com.tugalsan.api.list;
     requires com.tugalsan.api.unsafe;
     requires com.tugalsan.api.time;

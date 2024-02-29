@@ -3,6 +3,7 @@ package com.tugalsan.api.file.common.server;
 import com.tugalsan.api.callable.client.TGS_CallableType1;
 import com.tugalsan.api.callable.client.TGS_CallableType2;
 import com.tugalsan.api.callable.client.TGS_CallableType5;
+import com.tugalsan.api.file.server.TS_FileUtils;
 import com.tugalsan.api.list.client.*;
 import com.tugalsan.api.log.server.TS_Log;
 import java.nio.file.*;
@@ -271,6 +272,14 @@ public class TS_FileCommonConfig {
             GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(fontAwtItalic);
             GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(fontAwtRegular);
         });
+    }
+
+    private int fontType(Path fontPath) {
+        var typeStr = TS_FileUtils.getNameType(fontPath).toLowerCase();
+        if (Objects.equals(typeStr, "ttf")) {
+            return Font.TRUETYPE_FONT;
+        }
+        throw new IllegalArgumentException("Unknown font type '%s'".formatted(typeStr));
     }
 
     public boolean isPanNeeded(int codePoint) {

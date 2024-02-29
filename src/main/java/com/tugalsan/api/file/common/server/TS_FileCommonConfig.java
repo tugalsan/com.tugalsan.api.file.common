@@ -263,10 +263,10 @@ public class TS_FileCommonConfig {
         this.userDotTablename = this.username + "." + this.tablename;
 
         TGS_UnSafe.run(() -> {
-            fontAwtBold = Font.createFont(Font.TRUETYPE_FONT, fontPathBold.toFile()).deriveFont(fontHeight);
-            fontAwtBoldItalic = Font.createFont(Font.TRUETYPE_FONT, fontPathBoldItalic.toFile()).deriveFont(fontHeight);
-            fontAwtItalic = Font.createFont(Font.TRUETYPE_FONT, fontPathItalic.toFile()).deriveFont(fontHeight);
-            fontAwtRegular = Font.createFont(Font.TRUETYPE_FONT, fontPathRegular.toFile()).deriveFont(fontHeight);
+            fontAwtBold = Font.createFont(fontType(fontPathBold), fontPathBold.toFile()).deriveFont(fontHeight);
+            fontAwtBoldItalic = Font.createFont(fontType(fontPathBoldItalic), fontPathBoldItalic.toFile()).deriveFont(fontHeight);
+            fontAwtItalic = Font.createFont(fontType(fontPathItalic), fontPathItalic.toFile()).deriveFont(fontHeight);
+            fontAwtRegular = Font.createFont(fontType(fontPathRegular), fontPathRegular.toFile()).deriveFont(fontHeight);
             GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(fontAwtBold);
             GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(fontAwtBoldItalic);
             GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(fontAwtItalic);

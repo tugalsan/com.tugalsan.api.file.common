@@ -237,42 +237,42 @@ public class TS_FileCommonConfig {
         fontFamilyFonts = TS_FontUtils.toFont(fontFamilyPaths, fontHeight);
     }
 
-    public boolean canDisplay(int fontIdx, int codePoint) {
+    public boolean canDisplay(int codePoint) {
         if (fontBold && fontItalic) {
-            return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontIdx).boldItalic(), codePoint);
+            return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontFamilyIdx).boldItalic(), codePoint);
         }
         if (fontBold) {
-            return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontIdx).bold(), codePoint);
+            return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontFamilyIdx).bold(), codePoint);
         }
         if (fontItalic) {
-            return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontIdx).italic(), codePoint);
+            return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontFamilyIdx).italic(), codePoint);
         }
-        return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontIdx).regular(), codePoint);
+        return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontFamilyIdx).regular(), codePoint);
     }
 
-    public boolean canDisplay(int fontIdx, CharSequence text) {
+    public boolean canDisplay(CharSequence text) {
         if (fontBold && fontItalic) {
-            return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontIdx).boldItalic(), text);
+            return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontFamilyIdx).boldItalic(), text);
         }
         if (fontBold) {
-            return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontIdx).bold(), text);
+            return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontFamilyIdx).bold(), text);
         }
         if (fontItalic) {
-            return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontIdx).italic(), text);
+            return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontFamilyIdx).italic(), text);
         }
-        return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontIdx).regular(), text);
+        return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontFamilyIdx).regular(), text);
     }
 
-    public int canDisplayUpTo(int fontIdx, CharSequence text) {
+    public int canDisplayUpTo(CharSequence text) {
         if (fontBold && fontItalic) {
-            return TS_FontUtils.canDisplayUpTo(fontFamilyFonts.get(fontIdx).boldItalic(), text);
+            return TS_FontUtils.canDisplayUpTo(fontFamilyFonts.get(fontFamilyIdx).boldItalic(), text);
         }
         if (fontBold) {
-            return TS_FontUtils.canDisplayUpTo(fontFamilyFonts.get(fontIdx).bold(), text);
+            return TS_FontUtils.canDisplayUpTo(fontFamilyFonts.get(fontFamilyIdx).bold(), text);
         }
         if (fontItalic) {
-            return TS_FontUtils.canDisplayUpTo(fontFamilyFonts.get(fontIdx).italic(), text);
+            return TS_FontUtils.canDisplayUpTo(fontFamilyFonts.get(fontFamilyIdx).italic(), text);
         }
-        return TS_FontUtils.canDisplayUpTo(fontFamilyFonts.get(fontIdx).regular(), text);
+        return TS_FontUtils.canDisplayUpTo(fontFamilyFonts.get(fontFamilyIdx).regular(), text);
     }
 }

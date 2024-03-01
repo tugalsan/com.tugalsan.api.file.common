@@ -18,11 +18,8 @@ public class TS_FileCommonConfig {
 
     final private static TS_Log d = TS_Log.of(false, TS_FileCommonConfig.class);
 
-    final public TGS_FontFamily<Path> fontFamilyPathText;
-    final public TGS_FontFamily<Font> fontFamilyFontText;
-    public final List<TGS_FontFamily<Path>> fontFamiliesPathOther;
-    public final List<TGS_FontFamily<Font>> fontFamiliesFontOther;
-    public int fontFamiliesOtherIdx = -1;
+    final public List<TGS_FontFamily<Path>> fontFamilyPaths;
+    final public List<TGS_FontFamily<Font>> fontFamilyFonts;
 
     public String fontColor;
     public float fontHeightK;
@@ -90,7 +87,7 @@ public class TS_FileCommonConfig {
             String tablename, Long selectedId,
             String funcName, String fileNameLabel, TGS_Url url,
             List<String> requestedFileTypes, Path dirDat,
-            TGS_FontFamily<Path> fontFamilyPathText,
+            List<TGS_FontFamily<Path>> fontFamilyPaths,
             TGS_Url customDomain, TGS_Url favIconPng, String domainName,
             Path dirDatTbl, Path dirDatPub, Path dirDatUsr, Path dirDatUsrTmp
     ) {
@@ -106,7 +103,7 @@ public class TS_FileCommonConfig {
                 tablename, selectedId,
                 funcName, fileNameLabel, url,
                 requestedFileTypes, dirDat,
-                fontFamilyPathText, TGS_ListUtils.of(),
+                fontFamilyPaths,
                 customDomain, favIconPng, domainName,
                 manipulateInjectCode,
                 dirDatTbl, dirDatPub, dirDatUsr, dirDatUsrTmp,
@@ -124,7 +121,7 @@ public class TS_FileCommonConfig {
             String tablename, Long selectedId,
             String funcName, String fileNameLabel, TGS_Url url,
             List<String> requestedFileTypes, Path dirDat,
-            TGS_FontFamily<Path> fontFamilyPathText, List<TGS_FontFamily<Path>> fontFamiliesPathOther,
+            List<TGS_FontFamily<Path>> fontFamilyPaths,
             TGS_Url customDomain, TGS_Url favIconPng, String domainName,
             TGS_CallableType1<TGS_Url, TGS_Url> manipulateInjectCode,
             Path dirDatTbl, Path dirDatPub, Path dirDatUsr, Path dirDatUsrTmp,
@@ -140,7 +137,7 @@ public class TS_FileCommonConfig {
                 tablename, selectedId,
                 funcName, fileNameLabel, url,
                 requestedFileTypes, dirDat,
-                fontFamilyPathText, fontFamiliesPathOther,
+                fontFamilyPaths,
                 customDomain, favIconPng, domainName,
                 manipulateInjectCode,
                 dirDatTbl, dirDatPub, dirDatUsr, dirDatUsrTmp,
@@ -158,7 +155,7 @@ public class TS_FileCommonConfig {
             String tablename, Long selectedId,
             String funcName, String fileNameLabel, TGS_Url url,
             List<String> requestedFileTypes, Path dirDat,
-            TGS_FontFamily<Path> fontFamilyPathText, List<TGS_FontFamily<Path>> fontFamiliesPathOther,
+            List<TGS_FontFamily<Path>> fontFamilyPaths,
             TGS_Url customDomain, TGS_Url favIconPng, String domainName,
             TGS_CallableType1<TGS_Url, TGS_Url> manipulateInjectCode,
             Path dirDatTbl, Path dirDatPub, Path dirDatUsr, Path dirDatUsrTmp,
@@ -183,8 +180,7 @@ public class TS_FileCommonConfig {
                 d.ci("requestedFileTypes", i, requestedFileTypes.get(i));
             });
             d.ci("dirDat", dirDat);
-            d.ci("fontFamilyPathText", fontFamilyPathText);
-            d.ci("fontFamiliesPathOther", fontFamiliesPathOther);
+            d.ci("fontFamilyPaths", fontFamilyPaths);
             d.ci("customDomain", customDomain);
             d.ci("favIconPng", favIconPng);
             d.ci("domainName", domainName);
@@ -210,8 +206,7 @@ public class TS_FileCommonConfig {
         this.url = url;
         this.requestedFileTypes = requestedFileTypes;
         this.dirDat = dirDat;
-        this.fontFamilyPathText = fontFamilyPathText;
-        this.fontFamiliesPathOther = fontFamiliesPathOther;
+        this.fontFamilyPaths = fontFamilyPaths;
         this.customDomain = customDomain;
         this.favIconPng = favIconPng;
         this.domainName = domainName;
@@ -238,20 +233,45 @@ public class TS_FileCommonConfig {
         this.cellHeight = null;
         this.userDotTablename = this.username + "." + this.tablename;
 
-        fontFamilyFontText = TS_FontUtils.toFont(fontFamilyPathText, fontHeight);
-        fontFamiliesFontOther = TS_FontUtils.toFont(fontFamiliesPathOther, fontHeight);
+        fontFamilyFonts = TS_FontUtils.toFont(fontFamilyPaths, fontHeight);
     }
 
-    public boolean canDisplay(int codePoint) {
+    public boolean canDisplay(int fontIdx, int codePoint) {
         if (fontBold && fontItalic) {
-            return TS_FontUtils.canDisplay(fontFamilyFontText.boldItalic(), codePoint);
+            return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontIdx).boldItalic(), codePoint);
         }
         if (fontBold) {
-            return TS_FontUtils.canDisplay(fontFamilyFontText.bold(), codePoint);
+            return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontIdx).bold(), codePoint);
         }
         if (fontItalic) {
-            return TS_FontUtils.canDisplay(fontFamilyFontText.italic(), codePoint);
+            return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontIdx).italic(), codePoint);
         }
-        return TS_FontUtils.canDisplay(fontFamilyFontText.regular(), codePoint);
+        return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontIdx).regular(), codePoint);
+    }
+
+    public boolean canDisplay(int fontIdx, CharSequence text) {
+        if (fontBold && fontItalic) {
+            return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontIdx).boldItalic(), text);
+        }
+        if (fontBold) {
+            return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontIdx).bold(), text);
+        }
+        if (fontItalic) {
+            return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontIdx).italic(), text);
+        }
+        return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontIdx).regular(), text);
+    }
+
+    public int canDisplayUpTo(int fontIdx, CharSequence text) {
+        if (fontBold && fontItalic) {
+            return TS_FontUtils.canDisplayUpTo(fontFamilyFonts.get(fontIdx).boldItalic(), text);
+        }
+        if (fontBold) {
+            return TS_FontUtils.canDisplayUpTo(fontFamilyFonts.get(fontIdx).bold(), text);
+        }
+        if (fontItalic) {
+            return TS_FontUtils.canDisplayUpTo(fontFamilyFonts.get(fontIdx).italic(), text);
+        }
+        return TS_FontUtils.canDisplayUpTo(fontFamilyFonts.get(fontIdx).regular(), text);
     }
 }

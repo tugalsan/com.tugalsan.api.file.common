@@ -237,31 +237,31 @@ public class TS_FileCommonConfig {
         fontFamilyFonts = TS_FontUtils.toFont(fontFamilyPaths, fontHeight);
     }
 
-    public boolean canDisplay(int codePoint) {
-        if (fontBold && fontItalic) {
-            return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontFamilyIdx).boldItalic(), codePoint);
-        }
-        if (fontBold) {
-            return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontFamilyIdx).bold(), codePoint);
-        }
-        if (fontItalic) {
-            return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontFamilyIdx).italic(), codePoint);
-        }
-        return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontFamilyIdx).regular(), codePoint);
-    }
-
-    public boolean canDisplay(CharSequence text) {
-        if (fontBold && fontItalic) {
-            return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontFamilyIdx).boldItalic(), text);
-        }
-        if (fontBold) {
-            return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontFamilyIdx).bold(), text);
-        }
-        if (fontItalic) {
-            return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontFamilyIdx).italic(), text);
-        }
-        return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontFamilyIdx).regular(), text);
-    }
+//    public boolean canDisplay(int codePoint) {//NOT USED
+//        if (fontBold && fontItalic) {
+//            return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontFamilyIdx).boldItalic(), codePoint);
+//        }
+//        if (fontBold) {
+//            return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontFamilyIdx).bold(), codePoint);
+//        }
+//        if (fontItalic) {
+//            return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontFamilyIdx).italic(), codePoint);
+//        }
+//        return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontFamilyIdx).regular(), codePoint);
+//    }
+//
+//    public boolean canDisplay(CharSequence text) {//NOT USED
+//        if (fontBold && fontItalic) {
+//            return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontFamilyIdx).boldItalic(), text);
+//        }
+//        if (fontBold) {
+//            return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontFamilyIdx).bold(), text);
+//        }
+//        if (fontItalic) {
+//            return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontFamilyIdx).italic(), text);
+//        }
+//        return TS_FontUtils.canDisplay(fontFamilyFonts.get(fontFamilyIdx).regular(), text);
+//    }
 
     public int canDisplayUpTo(CharSequence text) {
         if (fontBold && fontItalic) {

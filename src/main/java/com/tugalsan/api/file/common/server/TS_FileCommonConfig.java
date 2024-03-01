@@ -3,56 +3,26 @@ package com.tugalsan.api.file.common.server;
 import com.tugalsan.api.callable.client.TGS_CallableType1;
 import com.tugalsan.api.callable.client.TGS_CallableType2;
 import com.tugalsan.api.callable.client.TGS_CallableType5;
-import com.tugalsan.api.file.server.TS_FileUtils;
+import com.tugalsan.api.font.client.TGS_FontFamily;
+import com.tugalsan.api.font.server.TS_FontUtils;
 import com.tugalsan.api.list.client.*;
 import com.tugalsan.api.log.server.TS_Log;
 import java.nio.file.*;
 import com.tugalsan.api.time.client.*;
-import com.tugalsan.api.unsafe.client.TGS_UnSafe;
 import java.util.*;
 import com.tugalsan.api.url.client.TGS_Url;
 import java.awt.Font;
-import java.awt.GraphicsEnvironment;
 import java.util.stream.IntStream;
 
 public class TS_FileCommonConfig {
 
     final private static TS_Log d = TS_Log.of(false, TS_FileCommonConfig.class);
 
-    public final List<Path> fontPathPanUnicode;
-    public boolean fontPanUnicodeActive = false;
-
-    public Path fontPathBold() {
-        if (fontPathPanUnicode.isEmpty()) {
-            return fontPathBold;
-        }
-        return fontPanUnicodeActive ? fontPathPanUnicode.get(0) : fontPathBold;
-    }
-    final private Path fontPathBold;
-
-    public Path fontPathBoldItalic() {
-        if (fontPathPanUnicode.isEmpty()) {
-            return fontPathBoldItalic;
-        }
-        return fontPanUnicodeActive ? fontPathPanUnicode.get(0) : fontPathBoldItalic;
-    }
-    private final Path fontPathBoldItalic;
-
-    public Path fontPathItalic() {
-        if (fontPathPanUnicode.isEmpty()) {
-            return fontPathItalic;
-        }
-        return fontPanUnicodeActive ? fontPathPanUnicode.get(0) : fontPathItalic;
-    }
-    final private Path fontPathItalic;
-
-    public Path fontPathRegular() {
-        if (fontPathPanUnicode.isEmpty()) {
-            return fontPathRegular;
-        }
-        return fontPanUnicodeActive ? fontPathPanUnicode.get(0) : fontPathRegular;
-    }
-    final private Path fontPathRegular;
+    final public TGS_FontFamily<Path> fontFamilyPathText;
+    final public TGS_FontFamily<Font> fontFamilyFontText;
+    public final List<TGS_FontFamily<Path>> fontFamiliesPathOther;
+    public final List<TGS_FontFamily<Font>> fontFamiliesFontOther;
+    public int fontFamiliesOtherIdx = -1;
 
     public String fontColor;
     public float fontHeightK;
@@ -120,7 +90,7 @@ public class TS_FileCommonConfig {
             String tablename, Long selectedId,
             String funcName, String fileNameLabel, TGS_Url url,
             List<String> requestedFileTypes, Path dirDat,
-            Path fontPathBold, Path fontPathBoldItalic, Path fontPathItalic, Path fontPathRegular,
+            TGS_FontFamily<Path> fontFamilyPathText,
             TGS_Url customDomain, TGS_Url favIconPng, String domainName,
             Path dirDatTbl, Path dirDatPub, Path dirDatUsr, Path dirDatUsrTmp
     ) {
@@ -136,7 +106,7 @@ public class TS_FileCommonConfig {
                 tablename, selectedId,
                 funcName, fileNameLabel, url,
                 requestedFileTypes, dirDat,
-                fontPathBold, fontPathBoldItalic, fontPathItalic, fontPathRegular, null,
+                fontFamilyPathText, TGS_ListUtils.of(),
                 customDomain, favIconPng, domainName,
                 manipulateInjectCode,
                 dirDatTbl, dirDatPub, dirDatUsr, dirDatUsrTmp,
@@ -154,7 +124,7 @@ public class TS_FileCommonConfig {
             String tablename, Long selectedId,
             String funcName, String fileNameLabel, TGS_Url url,
             List<String> requestedFileTypes, Path dirDat,
-            Path fontPathBold, Path fontPathBoldItalic, Path fontPathItalic, Path fontPathRegular, Path fontPathPanUnicode,
+            TGS_FontFamily<Path> fontFamilyPathText, List<TGS_FontFamily<Path>> fontFamiliesPathOther,
             TGS_Url customDomain, TGS_Url favIconPng, String domainName,
             TGS_CallableType1<TGS_Url, TGS_Url> manipulateInjectCode,
             Path dirDatTbl, Path dirDatPub, Path dirDatUsr, Path dirDatUsrTmp,
@@ -170,7 +140,7 @@ public class TS_FileCommonConfig {
                 tablename, selectedId,
                 funcName, fileNameLabel, url,
                 requestedFileTypes, dirDat,
-                fontPathBold, fontPathBoldItalic, fontPathItalic, fontPathRegular, TGS_ListUtils.of(),
+                fontFamilyPathText, fontFamiliesPathOther,
                 customDomain, favIconPng, domainName,
                 manipulateInjectCode,
                 dirDatTbl, dirDatPub, dirDatUsr, dirDatUsrTmp,
@@ -188,7 +158,7 @@ public class TS_FileCommonConfig {
             String tablename, Long selectedId,
             String funcName, String fileNameLabel, TGS_Url url,
             List<String> requestedFileTypes, Path dirDat,
-            Path fontPathBold, Path fontPathBoldItalic, Path fontPathItalic, Path fontPathRegular, List<Path> fontPathPanUnicode,
+            TGS_FontFamily<Path> fontFamilyPathText, List<TGS_FontFamily<Path>> fontFamiliesPathOther,
             TGS_Url customDomain, TGS_Url favIconPng, String domainName,
             TGS_CallableType1<TGS_Url, TGS_Url> manipulateInjectCode,
             Path dirDatTbl, Path dirDatPub, Path dirDatUsr, Path dirDatUsrTmp,
@@ -213,11 +183,8 @@ public class TS_FileCommonConfig {
                 d.ci("requestedFileTypes", i, requestedFileTypes.get(i));
             });
             d.ci("dirDat", dirDat);
-            d.ci("fontPathBold", fontPathBold);
-            d.ci("fontPathBoldItalic", fontPathBoldItalic);
-            d.ci("fontPathItalic", fontPathItalic);
-            d.ci("fontPathRegular", fontPathRegular);
-            d.ci("fontPathPanUnicode", fontPathPanUnicode);
+            d.ci("fontFamilyPathText", fontFamilyPathText);
+            d.ci("fontFamiliesPathOther", fontFamiliesPathOther);
             d.ci("customDomain", customDomain);
             d.ci("favIconPng", favIconPng);
             d.ci("domainName", domainName);
@@ -243,11 +210,8 @@ public class TS_FileCommonConfig {
         this.url = url;
         this.requestedFileTypes = requestedFileTypes;
         this.dirDat = dirDat;
-        this.fontPathBold = fontPathBold;
-        this.fontPathBoldItalic = fontPathBoldItalic;
-        this.fontPathItalic = fontPathItalic;
-        this.fontPathRegular = fontPathRegular;
-        this.fontPathPanUnicode = fontPathPanUnicode;
+        this.fontFamilyPathText = fontFamilyPathText;
+        this.fontFamiliesPathOther = fontFamiliesPathOther;
         this.customDomain = customDomain;
         this.favIconPng = favIconPng;
         this.domainName = domainName;
@@ -274,47 +238,20 @@ public class TS_FileCommonConfig {
         this.cellHeight = null;
         this.userDotTablename = this.username + "." + this.tablename;
 
-        TGS_UnSafe.run(() -> {
-            fontAwtBold = Font.createFont(fontType(fontPathBold), fontPathBold.toFile()).deriveFont(fontHeight);
-            fontAwtBoldItalic = Font.createFont(fontType(fontPathBoldItalic), fontPathBoldItalic.toFile()).deriveFont(fontHeight);
-            fontAwtItalic = Font.createFont(fontType(fontPathItalic), fontPathItalic.toFile()).deriveFont(fontHeight);
-            fontAwtRegular = Font.createFont(fontType(fontPathRegular), fontPathRegular.toFile()).deriveFont(fontHeight);
-            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(fontAwtBold);
-            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(fontAwtBoldItalic);
-            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(fontAwtItalic);
-            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(fontAwtRegular);
-        });
+        fontFamilyFontText = TS_FontUtils.toFont(fontFamilyPathText, fontHeight);
+        fontFamiliesFontOther = TS_FontUtils.toFont(fontFamiliesPathOther, fontHeight);
     }
 
-    private int fontType(Path fontPath) {
-        var typeStr = TS_FileUtils.getNameType(fontPath).toLowerCase();
-        if (Objects.equals(typeStr, "ttf")) {
-            return Font.TRUETYPE_FONT;
-        }
-        throw new IllegalArgumentException("Unknown font type '%s'".formatted(typeStr));
-    }
-
-    public boolean isPanNeeded(Font font, String fullText) {
-        return fullText.codePoints()
-                .filter(cp -> isPanNeeded(cp))
-                .findAny().isPresent();
-    }
-
-    public boolean isPanNeeded(int codePoint) {
+    public boolean canDisplay(int codePoint) {
         if (fontBold && fontItalic) {
-            return fontAwtBoldItalic.canDisplay(codePoint);
+            return TS_FontUtils.canDisplay(fontFamilyFontText.boldItalic(), codePoint);
         }
         if (fontBold) {
-            return fontAwtBold.canDisplay(codePoint);
+            return TS_FontUtils.canDisplay(fontFamilyFontText.bold(), codePoint);
         }
         if (fontItalic) {
-            return fontAwtItalic.canDisplay(codePoint);
+            return TS_FontUtils.canDisplay(fontFamilyFontText.italic(), codePoint);
         }
-        return fontAwtRegular.canDisplay(codePoint);
+        return TS_FontUtils.canDisplay(fontFamilyFontText.regular(), codePoint);
     }
-    private Font fontAwtBoldItalic;
-    private Font fontAwtBold;
-    private Font fontAwtItalic;
-    private Font fontAwtRegular;
-
 }

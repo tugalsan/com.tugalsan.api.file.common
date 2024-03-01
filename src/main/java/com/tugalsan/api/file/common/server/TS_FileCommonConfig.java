@@ -19,26 +19,38 @@ public class TS_FileCommonConfig {
 
     final private static TS_Log d = TS_Log.of(false, TS_FileCommonConfig.class);
 
-    private final Path fontPathPanUnicode;
+    public final List<Path> fontPathPanUnicode;
     public boolean fontPanUnicodeActive = false;
 
     public Path fontPathBold() {
-        return fontPanUnicodeActive ? fontPathPanUnicode : fontPathBold;
+        if (fontPathPanUnicode.isEmpty()) {
+            return fontPathBold;
+        }
+        return fontPanUnicodeActive ? fontPathPanUnicode.get(0) : fontPathBold;
     }
     final private Path fontPathBold;
 
     public Path fontPathBoldItalic() {
-        return fontPanUnicodeActive ? fontPathPanUnicode : fontPathBoldItalic;
+        if (fontPathPanUnicode.isEmpty()) {
+            return fontPathBoldItalic;
+        }
+        return fontPanUnicodeActive ? fontPathPanUnicode.get(0) : fontPathBoldItalic;
     }
     private final Path fontPathBoldItalic;
 
     public Path fontPathItalic() {
-        return fontPanUnicodeActive ? fontPathPanUnicode : fontPathItalic;
+        if (fontPathPanUnicode.isEmpty()) {
+            return fontPathItalic;
+        }
+        return fontPanUnicodeActive ? fontPathPanUnicode.get(0) : fontPathItalic;
     }
     final private Path fontPathItalic;
 
     public Path fontPathRegular() {
-        return fontPanUnicodeActive ? fontPathPanUnicode : fontPathRegular;
+        if (fontPathPanUnicode.isEmpty()) {
+            return fontPathRegular;
+        }
+        return fontPanUnicodeActive ? fontPathPanUnicode.get(0) : fontPathRegular;
     }
     final private Path fontPathRegular;
 
@@ -108,7 +120,7 @@ public class TS_FileCommonConfig {
             String tablename, Long selectedId,
             String funcName, String fileNameLabel, TGS_Url url,
             List<String> requestedFileTypes, Path dirDat,
-            Path fontPathBold, Path fontPathBoldItalic, Path fontPathItalic, Path fontPathRegular, Path fontPathPanUnicode,
+            Path fontPathBold, Path fontPathBoldItalic, Path fontPathItalic, Path fontPathRegular,
             TGS_Url customDomain, TGS_Url favIconPng, String domainName,
             Path dirDatTbl, Path dirDatPub, Path dirDatUsr, Path dirDatUsrTmp
     ) {
@@ -124,7 +136,7 @@ public class TS_FileCommonConfig {
                 tablename, selectedId,
                 funcName, fileNameLabel, url,
                 requestedFileTypes, dirDat,
-                fontPathBold, fontPathBoldItalic, fontPathItalic, fontPathRegular, fontPathPanUnicode,
+                fontPathBold, fontPathBoldItalic, fontPathItalic, fontPathRegular, null,
                 customDomain, favIconPng, domainName,
                 manipulateInjectCode,
                 dirDatTbl, dirDatPub, dirDatUsr, dirDatUsrTmp,
@@ -158,7 +170,7 @@ public class TS_FileCommonConfig {
                 tablename, selectedId,
                 funcName, fileNameLabel, url,
                 requestedFileTypes, dirDat,
-                fontPathBold, fontPathBoldItalic, fontPathItalic, fontPathRegular, fontPathPanUnicode,
+                fontPathBold, fontPathBoldItalic, fontPathItalic, fontPathRegular, TGS_ListUtils.of(),
                 customDomain, favIconPng, domainName,
                 manipulateInjectCode,
                 dirDatTbl, dirDatPub, dirDatUsr, dirDatUsrTmp,
@@ -176,7 +188,7 @@ public class TS_FileCommonConfig {
             String tablename, Long selectedId,
             String funcName, String fileNameLabel, TGS_Url url,
             List<String> requestedFileTypes, Path dirDat,
-            Path fontPathBold, Path fontPathBoldItalic, Path fontPathItalic, Path fontPathRegular, Path fontPathPanUnicode,
+            Path fontPathBold, Path fontPathBoldItalic, Path fontPathItalic, Path fontPathRegular, List<Path> fontPathPanUnicode,
             TGS_Url customDomain, TGS_Url favIconPng, String domainName,
             TGS_CallableType1<TGS_Url, TGS_Url> manipulateInjectCode,
             Path dirDatTbl, Path dirDatPub, Path dirDatUsr, Path dirDatUsrTmp,
@@ -280,6 +292,12 @@ public class TS_FileCommonConfig {
             return Font.TRUETYPE_FONT;
         }
         throw new IllegalArgumentException("Unknown font type '%s'".formatted(typeStr));
+    }
+
+    public boolean isPanNeeded(Font font, String fullText) {
+        return fullText.codePoints()
+                .filter(cp -> isPanNeeded(cp))
+                .findAny().isPresent();
     }
 
     public boolean isPanNeeded(int codePoint) {

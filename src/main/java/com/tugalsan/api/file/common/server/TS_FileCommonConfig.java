@@ -20,7 +20,7 @@ public class TS_FileCommonConfig {
 
     final public List<TGS_FontFamily<Path>> fontFamilyPaths;
     final public List<TGS_FontFamily<Font>> fontFamilyFonts;
-    public int fontFamilyIdx = 0;
+    public volatile int fontFamilyIdx = 0;
 
     public String fontColor;
     public float fontHeightK;

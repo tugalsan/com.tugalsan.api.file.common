@@ -3,6 +3,7 @@ package com.tugalsan.api.file.common.server;
 import com.tugalsan.api.callable.client.TGS_CallableType1;
 import com.tugalsan.api.callable.client.TGS_CallableType2;
 import com.tugalsan.api.callable.client.TGS_CallableType5;
+import com.tugalsan.api.coronator.client.TGS_Coronator;
 import com.tugalsan.api.font.client.TGS_FontFamily;
 import com.tugalsan.api.font.server.TS_FontUtils;
 import com.tugalsan.api.list.client.*;
@@ -11,6 +12,7 @@ import java.nio.file.*;
 import com.tugalsan.api.time.client.*;
 import java.util.*;
 import com.tugalsan.api.url.client.TGS_Url;
+import com.tugalsan.api.url.client.parser.TGS_UrlParser;
 import java.awt.Font;
 import java.util.stream.IntStream;
 
@@ -78,7 +80,8 @@ public class TS_FileCommonConfig {
     final public TGS_CallableType1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_USER;
 
     final public TGS_Url bootloaderJs;
-    
+    final public String domainName;
+
     @Override
     public String toString() {
         return TS_FileCommonConfig.class.getSimpleName() + "{" + "runReport=" + runReport + ", username=" + username + ", tablename=" + tablename + ", selectedId=" + selectedId + ", funcName=" + funcName + ", userDotTablename=" + userDotTablename + ", url=" + url + ", dirDat=" + dirDat + '}';
@@ -90,7 +93,7 @@ public class TS_FileCommonConfig {
             String funcName, String fileNameLabel, TGS_Url url,
             List<String> requestedFileTypes, Path dirDat,
             List<TGS_FontFamily<Path>> fontFamilyPaths,
-            TGS_Url favIconPng, 
+            TGS_Url favIconPng,
             Path dirDatTbl, Path dirDatPub, Path dirDatUsr, Path dirDatUsrTmp,
             TGS_Url bootloaderJs
     ) {
@@ -107,7 +110,7 @@ public class TS_FileCommonConfig {
                 funcName, fileNameLabel, url,
                 requestedFileTypes, dirDat,
                 fontFamilyPaths,
-                favIconPng, 
+                favIconPng,
                 manipulateInjectCode,
                 dirDatTbl, dirDatPub, dirDatUsr, dirDatUsrTmp,
                 libTableFileList_getFileNames_DataIn,
@@ -143,7 +146,7 @@ public class TS_FileCommonConfig {
                 funcName, fileNameLabel, url,
                 requestedFileTypes, dirDat,
                 fontFamilyPaths,
-                 favIconPng,
+                favIconPng,
                 manipulateInjectCode,
                 dirDatTbl, dirDatPub, dirDatUsr, dirDatUsrTmp,
                 libTableFileList_getFileNames_DataIn,
@@ -161,7 +164,7 @@ public class TS_FileCommonConfig {
             String tablename, Long selectedId,
             String funcName, String fileNameLabel, TGS_Url url,
             List<String> requestedFileTypes, Path dirDat,
-            List<TGS_FontFamily<Path>> fontFamilyPaths, TGS_Url favIconPng, 
+            List<TGS_FontFamily<Path>> fontFamilyPaths, TGS_Url favIconPng,
             TGS_CallableType1<TGS_Url, TGS_Url> manipulateInjectCode,
             Path dirDatTbl, Path dirDatPub, Path dirDatUsr, Path dirDatUsrTmp,
             TGS_CallableType5<List<String>, String, String, Long, String, Boolean> libTableFileList_getFileNames_DataIn,
@@ -236,6 +239,16 @@ public class TS_FileCommonConfig {
         this.mapVars = TGS_ListUtils.of();
         this.cellHeight = null;
         this.userDotTablename = this.username + "." + this.tablename;
+
+        this.domainName = TGS_Coronator.ofStr().coronateAs(__ -> {
+            if (favIconPng != null) {
+                return TGS_UrlParser.of(favIconPng).host.domain;
+            }
+            if (favIconPng != null) {
+                return TGS_UrlParser.of(bootloaderJs).host.domain;
+            }
+            return "localhost";
+        });
 
         fontFamilyFonts = TS_FontUtils.toFont(fontFamilyPaths, fontHeight);
     }

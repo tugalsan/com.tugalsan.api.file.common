@@ -78,6 +78,8 @@ public class TS_FileCommonConfig {
     final public TGS_CallableType1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_PUBLIC;
     final public TGS_CallableType1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_USER;
 
+    final public TGS_Url bootloaderJs;
+    
     @Override
     public String toString() {
         return TS_FileCommonConfig.class.getSimpleName() + "{" + "runReport=" + runReport + ", username=" + username + ", tablename=" + tablename + ", selectedId=" + selectedId + ", funcName=" + funcName + ", userDotTablename=" + userDotTablename + ", url=" + url + ", dirDat=" + dirDat + '}';
@@ -90,7 +92,8 @@ public class TS_FileCommonConfig {
             List<String> requestedFileTypes, Path dirDat,
             List<TGS_FontFamily<Path>> fontFamilyPaths,
             TGS_Url customDomain, TGS_Url favIconPng, String domainName,
-            Path dirDatTbl, Path dirDatPub, Path dirDatUsr, Path dirDatUsrTmp
+            Path dirDatTbl, Path dirDatPub, Path dirDatUsr, Path dirDatUsrTmp,
+            TGS_Url bootloaderJs
     ) {
         TGS_CallableType1<TGS_Url, TGS_Url> manipulateInjectCode = _url -> _url;//SKIP LEGACY CODE
         TGS_CallableType5<List<String>, String, String, Long, String, Boolean> libTableFileList_getFileNames_DataIn = (a, b, c, d, e) -> TGS_ListUtils.of();//SKIP LEGACY CODE
@@ -113,7 +116,8 @@ public class TS_FileCommonConfig {
                 libTableFileGetUtils_urlUsrTmp,
                 libTableServletUtils_URL_SERVLET_FETCH_TBL_FILE,
                 libFileServletUtils_URL_SERVLET_FETCH_PUBLIC,
-                libFileServletUtils_URL_SERVLET_FETCH_USER
+                libFileServletUtils_URL_SERVLET_FETCH_USER,
+                bootloaderJs
         );
     }
 
@@ -131,7 +135,8 @@ public class TS_FileCommonConfig {
             TGS_CallableType2<TGS_Url, String, Boolean> libTableFileGetUtils_urlUsrTmp,
             TGS_CallableType1<String, CharSequence> libTableServletUtils_URL_SERVLET_FETCH_TBL_FILE,
             TGS_CallableType1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_PUBLIC,
-            TGS_CallableType1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_USER
+            TGS_CallableType1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_USER,
+            TGS_Url bootloaderJs
     ) {
         return new TS_FileCommonConfig(
                 macroLines, username,
@@ -147,7 +152,8 @@ public class TS_FileCommonConfig {
                 libTableFileGetUtils_urlUsrTmp,
                 libTableServletUtils_URL_SERVLET_FETCH_TBL_FILE,
                 libFileServletUtils_URL_SERVLET_FETCH_PUBLIC,
-                libFileServletUtils_URL_SERVLET_FETCH_USER
+                libFileServletUtils_URL_SERVLET_FETCH_USER,
+                bootloaderJs
         );
     }
 
@@ -165,7 +171,8 @@ public class TS_FileCommonConfig {
             TGS_CallableType2<TGS_Url, String, Boolean> libTableFileGetUtils_urlUsrTmp,
             TGS_CallableType1<String, CharSequence> libTableServletUtils_URL_SERVLET_FETCH_TBL_FILE,
             TGS_CallableType1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_PUBLIC,
-            TGS_CallableType1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_USER
+            TGS_CallableType1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_USER,
+            TGS_Url bootloaderJs
     ) {
         if (d.infoEnable) {
             IntStream.range(0, macroLines.size()).forEachOrdered(i -> {
@@ -222,6 +229,7 @@ public class TS_FileCommonConfig {
         this.libTableServletUtils_URL_SERVLET_FETCH_TBL_FILE = libTableServletUtils_URL_SERVLET_FETCH_TBL_FILE;
         this.libFileServletUtils_URL_SERVLET_FETCH_PUBLIC = libFileServletUtils_URL_SERVLET_FETCH_PUBLIC;
         this.libFileServletUtils_URL_SERVLET_FETCH_USER = libFileServletUtils_URL_SERVLET_FETCH_USER;
+        this.bootloaderJs = bootloaderJs;
 
         this.fontItalic = false;
         this.fontItalic = false;

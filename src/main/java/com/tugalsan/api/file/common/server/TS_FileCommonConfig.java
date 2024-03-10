@@ -54,7 +54,6 @@ public class TS_FileCommonConfig {
     final public List<String> macroLines;
     final public String username;
     final public String tablename;
-    final public String domainName;
     final public Long selectedId;
     final public String funcName;
     public Integer cellHeight;
@@ -67,7 +66,7 @@ public class TS_FileCommonConfig {
     final public Path dirDatUsr;
     final public Path dirDatUsrTmp;
 
-    final public TGS_Url customDomain;
+//    final public TGS_Url customDomain;
     final public TGS_Url favIconPng;
 
     final public TGS_CallableType1<TGS_Url, TGS_Url> manipulateInjectCode;
@@ -91,7 +90,7 @@ public class TS_FileCommonConfig {
             String funcName, String fileNameLabel, TGS_Url url,
             List<String> requestedFileTypes, Path dirDat,
             List<TGS_FontFamily<Path>> fontFamilyPaths,
-            TGS_Url customDomain, TGS_Url favIconPng, String domainName,
+            TGS_Url favIconPng, 
             Path dirDatTbl, Path dirDatPub, Path dirDatUsr, Path dirDatUsrTmp,
             TGS_Url bootloaderJs
     ) {
@@ -99,16 +98,16 @@ public class TS_FileCommonConfig {
         TGS_CallableType5<List<String>, String, String, Long, String, Boolean> libTableFileList_getFileNames_DataIn = (a, b, c, d, e) -> TGS_ListUtils.of();//SKIP LEGACY CODE
         TGS_CallableType2<Path, String, String> libTableFileDir_datTblTblnameColname = (a, b) -> dirDatUsrTmp;//SKIP LEGACY CODE
         TGS_CallableType2<TGS_Url, String, Boolean> libTableFileGetUtils_urlUsrTmp = (a, b) -> favIconPng;//SKIP LEGACY CODE
-        TGS_CallableType1<String, CharSequence> libTableServletUtils_URL_SERVLET_FETCH_TBL_FILE = a -> customDomain.toString();//SKIP LEGACY CODE
-        TGS_CallableType1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_PUBLIC = a -> customDomain.toString();//SKIP LEGACY CODE
-        TGS_CallableType1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_USER = a -> customDomain.toString();//SKIP LEGACY CODE
+        TGS_CallableType1<String, CharSequence> libTableServletUtils_URL_SERVLET_FETCH_TBL_FILE = a -> "";//SKIP LEGACY CODE
+        TGS_CallableType1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_PUBLIC = a -> "";//SKIP LEGACY CODE
+        TGS_CallableType1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_USER = a -> "";//SKIP LEGACY CODE
         return of(
                 macroLines, username,
                 tablename, selectedId,
                 funcName, fileNameLabel, url,
                 requestedFileTypes, dirDat,
                 fontFamilyPaths,
-                customDomain, favIconPng, domainName,
+                favIconPng, 
                 manipulateInjectCode,
                 dirDatTbl, dirDatPub, dirDatUsr, dirDatUsrTmp,
                 libTableFileList_getFileNames_DataIn,
@@ -127,7 +126,7 @@ public class TS_FileCommonConfig {
             String funcName, String fileNameLabel, TGS_Url url,
             List<String> requestedFileTypes, Path dirDat,
             List<TGS_FontFamily<Path>> fontFamilyPaths,
-            TGS_Url customDomain, TGS_Url favIconPng, String domainName,
+            TGS_Url favIconPng,
             TGS_CallableType1<TGS_Url, TGS_Url> manipulateInjectCode,
             Path dirDatTbl, Path dirDatPub, Path dirDatUsr, Path dirDatUsrTmp,
             TGS_CallableType5<List<String>, String, String, Long, String, Boolean> libTableFileList_getFileNames_DataIn,
@@ -144,7 +143,7 @@ public class TS_FileCommonConfig {
                 funcName, fileNameLabel, url,
                 requestedFileTypes, dirDat,
                 fontFamilyPaths,
-                customDomain, favIconPng, domainName,
+                 favIconPng,
                 manipulateInjectCode,
                 dirDatTbl, dirDatPub, dirDatUsr, dirDatUsrTmp,
                 libTableFileList_getFileNames_DataIn,
@@ -162,8 +161,7 @@ public class TS_FileCommonConfig {
             String tablename, Long selectedId,
             String funcName, String fileNameLabel, TGS_Url url,
             List<String> requestedFileTypes, Path dirDat,
-            List<TGS_FontFamily<Path>> fontFamilyPaths,
-            TGS_Url customDomain, TGS_Url favIconPng, String domainName,
+            List<TGS_FontFamily<Path>> fontFamilyPaths, TGS_Url favIconPng, 
             TGS_CallableType1<TGS_Url, TGS_Url> manipulateInjectCode,
             Path dirDatTbl, Path dirDatPub, Path dirDatUsr, Path dirDatUsrTmp,
             TGS_CallableType5<List<String>, String, String, Long, String, Boolean> libTableFileList_getFileNames_DataIn,
@@ -189,9 +187,7 @@ public class TS_FileCommonConfig {
             });
             d.ci("dirDat", dirDat);
             d.ci("fontFamilyPaths", fontFamilyPaths);
-            d.ci("customDomain", customDomain);
             d.ci("favIconPng", favIconPng);
-            d.ci("domainName", domainName);
             d.ci("manipulateInjectCode", manipulateInjectCode != null);
             d.ci("dirDatTbl", dirDatTbl);
             d.ci("dirDatPub", dirDatPub);
@@ -215,9 +211,8 @@ public class TS_FileCommonConfig {
         this.requestedFileTypes = requestedFileTypes;
         this.dirDat = dirDat;
         this.fontFamilyPaths = fontFamilyPaths;
-        this.customDomain = customDomain;
+//        this.customDomain = customDomain;
         this.favIconPng = favIconPng;
-        this.domainName = domainName;
         this.manipulateInjectCode = manipulateInjectCode;
         this.dirDatTbl = dirDatTbl;
         this.dirDatPub = dirDatPub;

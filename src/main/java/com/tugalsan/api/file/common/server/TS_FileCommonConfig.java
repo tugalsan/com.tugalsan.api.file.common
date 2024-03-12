@@ -3,7 +3,6 @@ package com.tugalsan.api.file.common.server;
 import com.tugalsan.api.callable.client.TGS_CallableType1;
 import com.tugalsan.api.callable.client.TGS_CallableType2;
 import com.tugalsan.api.callable.client.TGS_CallableType5;
-import com.tugalsan.api.coronator.client.TGS_Coronator;
 import com.tugalsan.api.font.client.TGS_FontFamily;
 import com.tugalsan.api.font.server.TS_FontUtils;
 import com.tugalsan.api.list.client.*;
@@ -68,8 +67,7 @@ public class TS_FileCommonConfig {
     final public Path dirDatUsr;
     final public Path dirDatUsrTmp;
 
-//    final public TGS_Url customDomain;
-    final public TGS_Url favIconPng;
+    final public TS_FileCommonFavIcon favIconPng;
 
     final public TGS_CallableType1<TGS_Url, TGS_Url> manipulateInjectCode;
     final public TGS_CallableType5<List<String>, String, String, Long, String, Boolean> libTableFileList_getFileNames_DataIn;
@@ -93,14 +91,14 @@ public class TS_FileCommonConfig {
             String funcName, String fileNameLabel, TGS_Url url,
             List<String> requestedFileTypes, Path dirDat,
             List<TGS_FontFamily<Path>> fontFamilyPaths,
-            TGS_Url favIconPng,
+            TS_FileCommonFavIcon favIconPng,
             Path dirDatTbl, Path dirDatPub, Path dirDatUsr, Path dirDatUsrTmp,
             TGS_Url bootloaderJs
     ) {
         TGS_CallableType1<TGS_Url, TGS_Url> manipulateInjectCode = _url -> _url;//SKIP LEGACY CODE
         TGS_CallableType5<List<String>, String, String, Long, String, Boolean> libTableFileList_getFileNames_DataIn = (a, b, c, d, e) -> TGS_ListUtils.of();//SKIP LEGACY CODE
         TGS_CallableType2<Path, String, String> libTableFileDir_datTblTblnameColname = (a, b) -> dirDatUsrTmp;//SKIP LEGACY CODE
-        TGS_CallableType2<TGS_Url, String, Boolean> libTableFileGetUtils_urlUsrTmp = (a, b) -> favIconPng;//SKIP LEGACY CODE
+        TGS_CallableType2<TGS_Url, String, Boolean> libTableFileGetUtils_urlUsrTmp = (a, b) -> bootloaderJs;//SKIP LEGACY CODE
         TGS_CallableType1<String, CharSequence> libTableServletUtils_URL_SERVLET_FETCH_TBL_FILE = a -> "";//SKIP LEGACY CODE
         TGS_CallableType1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_PUBLIC = a -> "";//SKIP LEGACY CODE
         TGS_CallableType1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_USER = a -> "";//SKIP LEGACY CODE
@@ -129,7 +127,7 @@ public class TS_FileCommonConfig {
             String funcName, String fileNameLabel, TGS_Url url,
             List<String> requestedFileTypes, Path dirDat,
             List<TGS_FontFamily<Path>> fontFamilyPaths,
-            TGS_Url favIconPng,
+            TS_FileCommonFavIcon favIconPng,
             TGS_CallableType1<TGS_Url, TGS_Url> manipulateInjectCode,
             Path dirDatTbl, Path dirDatPub, Path dirDatUsr, Path dirDatUsrTmp,
             TGS_CallableType5<List<String>, String, String, Long, String, Boolean> libTableFileList_getFileNames_DataIn,
@@ -164,7 +162,7 @@ public class TS_FileCommonConfig {
             String tablename, Long selectedId,
             String funcName, String fileNameLabel, TGS_Url url,
             List<String> requestedFileTypes, Path dirDat,
-            List<TGS_FontFamily<Path>> fontFamilyPaths, TGS_Url favIconPng,
+            List<TGS_FontFamily<Path>> fontFamilyPaths, TS_FileCommonFavIcon favIconPng,
             TGS_CallableType1<TGS_Url, TGS_Url> manipulateInjectCode,
             Path dirDatTbl, Path dirDatPub, Path dirDatUsr, Path dirDatUsrTmp,
             TGS_CallableType5<List<String>, String, String, Long, String, Boolean> libTableFileList_getFileNames_DataIn,
@@ -239,17 +237,7 @@ public class TS_FileCommonConfig {
         this.mapVars = TGS_ListUtils.of();
         this.cellHeight = null;
         this.userDotTablename = this.username + "." + this.tablename;
-
-        this.domainName = TGS_Coronator.ofStr().coronateAs(__ -> {
-            if (favIconPng != null) {
-                return TGS_UrlParser.of(favIconPng).host.domain;
-            }
-            if (favIconPng != null) {
-                return TGS_UrlParser.of(bootloaderJs).host.domain;
-            }
-            return "localhost";
-        });
-
-        fontFamilyFonts = TS_FontUtils.toFont(fontFamilyPaths, fontHeight);
+        this.domainName = bootloaderJs == null ? "localhost" : TGS_UrlParser.of(bootloaderJs).host.domain;
+        this.fontFamilyFonts = TS_FontUtils.toFont(fontFamilyPaths, fontHeight);
     }
 }

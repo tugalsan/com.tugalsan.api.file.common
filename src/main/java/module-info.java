@@ -9,5 +9,6 @@ module com.tugalsan.api.file.common {
     requires com.tugalsan.api.list;
     requires com.tugalsan.api.unsafe;
     requires com.tugalsan.api.time;
+    exports com.tugalsan.api.file.common.client;
     exports com.tugalsan.api.file.common.server;
 }

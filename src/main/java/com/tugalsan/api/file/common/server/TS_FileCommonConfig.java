@@ -3,6 +3,7 @@ package com.tugalsan.api.file.common.server;
 import com.tugalsan.api.callable.client.TGS_CallableType1;
 import com.tugalsan.api.callable.client.TGS_CallableType2;
 import com.tugalsan.api.callable.client.TGS_CallableType5;
+import com.tugalsan.api.file.common.client.TGS_FileCommonFavIcon;
 import com.tugalsan.api.font.client.TGS_FontFamily;
 import com.tugalsan.api.font.server.TS_FontUtils;
 import com.tugalsan.api.list.client.*;
@@ -67,7 +68,7 @@ public class TS_FileCommonConfig {
     final public Path dirDatUsr;
     final public Path dirDatUsrTmp;
 
-    final public TS_FileCommonFavIcon favIconPng;
+    final public TGS_FileCommonFavIcon favIconPng;
 
     final public TGS_CallableType1<TGS_Url, TGS_Url> manipulateInjectCode;
     final public TGS_CallableType5<List<String>, String, String, Long, String, Boolean> libTableFileList_getFileNames_DataIn;
@@ -91,7 +92,7 @@ public class TS_FileCommonConfig {
             String funcName, String fileNameLabel, TGS_Url url,
             List<String> requestedFileTypes, Path dirDat,
             List<TGS_FontFamily<Path>> fontFamilyPaths,
-            TS_FileCommonFavIcon favIconPng,
+            TGS_FileCommonFavIcon favIconPng,
             Path dirDatTbl, Path dirDatPub, Path dirDatUsr, Path dirDatUsrTmp,
             TGS_Url bootloaderJs
     ) {
@@ -127,7 +128,7 @@ public class TS_FileCommonConfig {
             String funcName, String fileNameLabel, TGS_Url url,
             List<String> requestedFileTypes, Path dirDat,
             List<TGS_FontFamily<Path>> fontFamilyPaths,
-            TS_FileCommonFavIcon favIconPng,
+            TGS_FileCommonFavIcon favIconPng,
             TGS_CallableType1<TGS_Url, TGS_Url> manipulateInjectCode,
             Path dirDatTbl, Path dirDatPub, Path dirDatUsr, Path dirDatUsrTmp,
             TGS_CallableType5<List<String>, String, String, Long, String, Boolean> libTableFileList_getFileNames_DataIn,
@@ -162,7 +163,7 @@ public class TS_FileCommonConfig {
             String tablename, Long selectedId,
             String funcName, String fileNameLabel, TGS_Url url,
             List<String> requestedFileTypes, Path dirDat,
-            List<TGS_FontFamily<Path>> fontFamilyPaths, TS_FileCommonFavIcon favIconPng,
+            List<TGS_FontFamily<Path>> fontFamilyPaths, TGS_FileCommonFavIcon favIconPng,
             TGS_CallableType1<TGS_Url, TGS_Url> manipulateInjectCode,
             Path dirDatTbl, Path dirDatPub, Path dirDatUsr, Path dirDatUsrTmp,
             TGS_CallableType5<List<String>, String, String, Long, String, Boolean> libTableFileList_getFileNames_DataIn,

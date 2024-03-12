@@ -4,6 +4,7 @@ module com.tugalsan.api.file.common {
     requires com.tugalsan.api.font;
     requires com.tugalsan.api.callable;
     requires com.tugalsan.api.coronator;
+    requires com.tugalsan.api.string;
     requires com.tugalsan.api.log;
     requires com.tugalsan.api.file;
     requires com.tugalsan.api.list;

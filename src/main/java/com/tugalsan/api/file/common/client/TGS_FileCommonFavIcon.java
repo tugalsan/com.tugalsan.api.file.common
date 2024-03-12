@@ -1,5 +1,6 @@
 package com.tugalsan.api.file.common.client;
 
+import com.tugalsan.api.string.client.TGS_StringUtils;
 import com.tugalsan.api.url.client.TGS_Url;
 
 public class TGS_FileCommonFavIcon {
@@ -36,6 +37,22 @@ public class TGS_FileCommonFavIcon {
         if (isIcon()) {
             return "<link id=\"favicon\" rel=\"icon\" type=\"image/png\" sizes=\"16x16\" href=\"" + hrefPngIcon + "\"/>";
         }
-        return "<link rel=\"icon\" href=\"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' style='filter: invert(100%);'><rect width='100%' height='100%' fill='white'/><text x='-1' y='15.5' stroke='red'>ms</text></svg>\" type=\"image/svg+xml\" />";
+        var sb = new StringBuilder();
+        sb.append("<link rel=\"icon\" href=\"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' ");
+        if (invertColors) {
+            sb.append("style='filter: invert(100%);");
+        }
+        sb.append("'><rect width='100%' height='100%' ");
+        if (TGS_StringUtils.isNullOrEmpty(optionalBackColor)) {
+            sb.append("fill='").append(optionalBackColor).append("'");
+        }
+        sb.append("/><text x='-1' y='15.5' stroke='red'>");
+        if (TGS_StringUtils.isNullOrEmpty(utf8Text)) {
+            sb.append("?");
+        } else {
+            sb.append(utf8Text);
+        }
+        sb.append("</text></svg>\" type=\"image/svg+xml\" />");
+        return sb.toString();
     }
 }

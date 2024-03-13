@@ -40,10 +40,10 @@ public class TGS_FileCommonFavIcon {
         var sb = new StringBuilder();
         sb.append("<link rel=\"icon\" href=\"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' ");
         if (invertColors) {
-            sb.append("style='filter: invert(100%);");
+            sb.append("style='filter: invert(100%);'");
         }
-        sb.append("'><rect width='100%' height='100%' ");
-        if (TGS_StringUtils.isNullOrEmpty(optionalBackColor)) {
+        sb.append("><rect width='100%' height='100%' ");
+        if (TGS_StringUtils.isPresent(optionalBackColor)) {
             sb.append("fill='").append(optionalBackColor).append("'");
         }
         sb.append("/><text x='-1' y='15.5' stroke='red'>");

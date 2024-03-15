@@ -16,12 +16,12 @@ public class TGS_FileCommonFavIcon {
     final public String optionalBackColor;
     final public boolean invertColors;
 
-    public static TGS_FileCommonFavIcon of(TGS_Url hrefPngIcon) {
+    public static TGS_FileCommonFavIcon ofPng16x16(TGS_Url hrefPngIcon) {
         return new TGS_FileCommonFavIcon(hrefPngIcon, null, null, false);
     }
 
-    public static TGS_FileCommonFavIcon of(String utf8Text, String optionalBackColor, boolean invertColors) {
-        return new TGS_FileCommonFavIcon(null, utf8Text, optionalBackColor, invertColors);
+    public static TGS_FileCommonFavIcon ofTxt(String txt, String optionalBackColor, boolean invertColors) {
+        return new TGS_FileCommonFavIcon(null, txt, optionalBackColor, invertColors);
     }
 
     public boolean isUTF8Text() {

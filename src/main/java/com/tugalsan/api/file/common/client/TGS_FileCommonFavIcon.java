@@ -43,11 +43,11 @@ public class TGS_FileCommonFavIcon {
             sb.append("style='filter: invert(100%);'");
         }
         sb.append("><rect width='100%' height='100%' ");
-        if (TGS_StringUtils.isPresent(optionalBackColor)) {
+        if (TGS_StringUtils.cmn().isPresent(optionalBackColor)) {
             sb.append("fill='").append(optionalBackColor).append("'");
         }
         sb.append("/><text x='-1' y='15.5' stroke='red'>");
-        if (TGS_StringUtils.isNullOrEmpty(utf8Text)) {
+        if (TGS_StringUtils.cmn().isNullOrEmpty(utf8Text)) {
             sb.append("?");
         } else {
             sb.append(utf8Text);

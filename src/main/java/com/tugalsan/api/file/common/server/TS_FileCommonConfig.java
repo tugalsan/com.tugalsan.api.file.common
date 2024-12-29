@@ -19,6 +19,7 @@ import java.util.stream.IntStream;
 public class TS_FileCommonConfig {
 
     final private static TS_Log d = TS_Log.of(false, TS_FileCommonConfig.class);
+    final public boolean PARALLEL;
 
     final public List<TGS_FontFamily<Path>> fontFamilyPaths;
     final public List<TGS_FontFamily<Font>> fontFamilyFonts;
@@ -86,7 +87,7 @@ public class TS_FileCommonConfig {
         return TS_FileCommonConfig.class.getSimpleName() + "{" + "runReport=" + runReport + ", username=" + username + ", tablename=" + tablename + ", selectedId=" + selectedId + ", funcName=" + funcName + ", userDotTablename=" + userDotTablename + ", url=" + url + ", dirDat=" + dirDat + '}';
     }
 
-    public static TS_FileCommonConfig of(
+    public static TS_FileCommonConfig of(boolean PARALLEL,
             List<String> macroLines, String username,
             String tablename, Long selectedId,
             String funcName, String fileNameLabel, TGS_Url url,
@@ -103,7 +104,7 @@ public class TS_FileCommonConfig {
         TGS_Func_OutTyped_In1<String, CharSequence> libTableServletUtils_URL_SERVLET_FETCH_TBL_FILE = a -> "";//SKIP LEGACY CODE
         TGS_Func_OutTyped_In1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_PUBLIC = a -> "";//SKIP LEGACY CODE
         TGS_Func_OutTyped_In1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_USER = a -> "";//SKIP LEGACY CODE
-        return of(
+        return of(PARALLEL,
                 macroLines, username,
                 tablename, selectedId,
                 funcName, fileNameLabel, url,
@@ -122,7 +123,7 @@ public class TS_FileCommonConfig {
         );
     }
 
-    public static TS_FileCommonConfig of(
+    public static TS_FileCommonConfig of(boolean PARALLEL,
             List<String> macroLines, String username,
             String tablename, Long selectedId,
             String funcName, String fileNameLabel, TGS_Url url,
@@ -139,7 +140,7 @@ public class TS_FileCommonConfig {
             TGS_Func_OutTyped_In1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_USER,
             TGS_Url bootloaderJs
     ) {
-        return new TS_FileCommonConfig(
+        return new TS_FileCommonConfig(PARALLEL,
                 macroLines, username,
                 tablename, selectedId,
                 funcName, fileNameLabel, url,
@@ -158,7 +159,7 @@ public class TS_FileCommonConfig {
         );
     }
 
-    private TS_FileCommonConfig(
+    private TS_FileCommonConfig(boolean PARALLEL,
             List<String> macroLines, String username,
             String tablename, Long selectedId,
             String funcName, String fileNameLabel, TGS_Url url,
@@ -174,6 +175,7 @@ public class TS_FileCommonConfig {
             TGS_Func_OutTyped_In1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_USER,
             TGS_Url bootloaderJs
     ) {
+        this.PARALLEL = PARALLEL;
         if (d.infoEnable) {
             IntStream.range(0, macroLines.size()).forEachOrdered(i -> {
                 d.ci("macroLines", i, macroLines.get(i));

@@ -10,9 +10,12 @@ public abstract class TS_FileCommonAbstract {
     final public static boolean FILENAME_CHAR_SUPPORT_TURKISH = true;
     final public static boolean FILENAME_CHAR_SUPPORT_SPACE = true;
 
+    public abstract String getSuperClassName();
+
     @Override
     public int hashCode() {
         var hash = 5;
+        hash = 73 * hash + Objects.hashCode(getSuperClassName());
         hash = 73 * hash + Objects.hashCode(this.localFile);
         hash = 73 * hash + Objects.hashCode(this.remoteFile);
         return hash;
@@ -62,6 +65,7 @@ public abstract class TS_FileCommonAbstract {
     final public Path getLocalFileName() {
         return localFile;
     }
+
     final public void setLocalFileName(Path file) {
         localFile = file;
     }
@@ -70,6 +74,7 @@ public abstract class TS_FileCommonAbstract {
     final public TGS_Url getRemoteFileName() {
         return remoteFile;
     }
+
     final public void setRemoteFileName(TGS_Url url) {
         remoteFile = url;
     }

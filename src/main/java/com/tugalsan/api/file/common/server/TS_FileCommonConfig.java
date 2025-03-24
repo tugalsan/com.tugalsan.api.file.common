@@ -1,8 +1,8 @@
 package com.tugalsan.api.file.common.server;
 
-import com.tugalsan.api.function.client.maythrow.uncheckedexceptions.TGS_FuncMTUCE_OutTyped_In1;
-import com.tugalsan.api.function.client.maythrow.uncheckedexceptions.TGS_FuncMTUCE_OutTyped_In2;
-import com.tugalsan.api.function.client.maythrow.uncheckedexceptions.TGS_FuncMTUCE_OutTyped_In5;
+import com.tugalsan.api.function.client.maythrowexceptions.unchecked.TGS_FuncMTU_OutTyped_In1;
+import com.tugalsan.api.function.client.maythrowexceptions.unchecked.TGS_FuncMTU_OutTyped_In2;
+import com.tugalsan.api.function.client.maythrowexceptions.unchecked.TGS_FuncMTU_OutTyped_In5;
 import com.tugalsan.api.file.common.client.TGS_FileCommonFavIcon;
 import com.tugalsan.api.font.client.TGS_FontFamily;
 import com.tugalsan.api.font.server.TS_FontUtils;
@@ -71,13 +71,13 @@ public class TS_FileCommonConfig {
 
     final public TGS_FileCommonFavIcon favIconPng;
 
-    final public TGS_FuncMTUCE_OutTyped_In1<TGS_Url, TGS_Url> manipulateInjectCode;
-    final public TGS_FuncMTUCE_OutTyped_In5<List<String>, String, String, Long, String, Boolean> libTableFileList_getFileNames_DataIn;
-    final public TGS_FuncMTUCE_OutTyped_In2<Path, String, String> libTableFileDir_datTblTblnameColname;
-    final public TGS_FuncMTUCE_OutTyped_In2<TGS_Url, String, Boolean> libTableFileGetUtils_urlUsrTmp;
-    final public TGS_FuncMTUCE_OutTyped_In1<String, CharSequence> libTableServletUtils_URL_SERVLET_FETCH_TBL_FILE;
-    final public TGS_FuncMTUCE_OutTyped_In1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_PUBLIC;
-    final public TGS_FuncMTUCE_OutTyped_In1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_USER;
+    final public TGS_FuncMTU_OutTyped_In1<TGS_Url, TGS_Url> manipulateInjectCode;
+    final public TGS_FuncMTU_OutTyped_In5<List<String>, String, String, Long, String, Boolean> libTableFileList_getFileNames_DataIn;
+    final public TGS_FuncMTU_OutTyped_In2<Path, String, String> libTableFileDir_datTblTblnameColname;
+    final public TGS_FuncMTU_OutTyped_In2<TGS_Url, String, Boolean> libTableFileGetUtils_urlUsrTmp;
+    final public TGS_FuncMTU_OutTyped_In1<String, CharSequence> libTableServletUtils_URL_SERVLET_FETCH_TBL_FILE;
+    final public TGS_FuncMTU_OutTyped_In1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_PUBLIC;
+    final public TGS_FuncMTU_OutTyped_In1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_USER;
 
     final public TGS_Url bootloaderJs;
     final public String domainName;
@@ -97,13 +97,13 @@ public class TS_FileCommonConfig {
             Path dirDatTbl, Path dirDatPub, Path dirDatUsr, Path dirDatUsrTmp,
             TGS_Url bootloaderJs
     ) {
-        TGS_FuncMTUCE_OutTyped_In1<TGS_Url, TGS_Url> manipulateInjectCode = _url -> _url;//SKIP LEGACY CODE
-        TGS_FuncMTUCE_OutTyped_In5<List<String>, String, String, Long, String, Boolean> libTableFileList_getFileNames_DataIn = (a, b, c, d, e) -> TGS_ListUtils.of();//SKIP LEGACY CODE
-        TGS_FuncMTUCE_OutTyped_In2<Path, String, String> libTableFileDir_datTblTblnameColname = (a, b) -> dirDatUsrTmp;//SKIP LEGACY CODE
-        TGS_FuncMTUCE_OutTyped_In2<TGS_Url, String, Boolean> libTableFileGetUtils_urlUsrTmp = (a, b) -> bootloaderJs;//SKIP LEGACY CODE
-        TGS_FuncMTUCE_OutTyped_In1<String, CharSequence> libTableServletUtils_URL_SERVLET_FETCH_TBL_FILE = a -> "";//SKIP LEGACY CODE
-        TGS_FuncMTUCE_OutTyped_In1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_PUBLIC = a -> "";//SKIP LEGACY CODE
-        TGS_FuncMTUCE_OutTyped_In1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_USER = a -> "";//SKIP LEGACY CODE
+        TGS_FuncMTU_OutTyped_In1<TGS_Url, TGS_Url> manipulateInjectCode = _url -> _url;//SKIP LEGACY CODE
+        TGS_FuncMTU_OutTyped_In5<List<String>, String, String, Long, String, Boolean> libTableFileList_getFileNames_DataIn = (a, b, c, d, e) -> TGS_ListUtils.of();//SKIP LEGACY CODE
+        TGS_FuncMTU_OutTyped_In2<Path, String, String> libTableFileDir_datTblTblnameColname = (a, b) -> dirDatUsrTmp;//SKIP LEGACY CODE
+        TGS_FuncMTU_OutTyped_In2<TGS_Url, String, Boolean> libTableFileGetUtils_urlUsrTmp = (a, b) -> bootloaderJs;//SKIP LEGACY CODE
+        TGS_FuncMTU_OutTyped_In1<String, CharSequence> libTableServletUtils_URL_SERVLET_FETCH_TBL_FILE = a -> "";//SKIP LEGACY CODE
+        TGS_FuncMTU_OutTyped_In1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_PUBLIC = a -> "";//SKIP LEGACY CODE
+        TGS_FuncMTU_OutTyped_In1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_USER = a -> "";//SKIP LEGACY CODE
         return of(PARALLEL,
                 macroLines, username,
                 tablename, selectedId,
@@ -130,14 +130,14 @@ public class TS_FileCommonConfig {
             List<String> requestedFileTypes, Path dirDat,
             List<TGS_FontFamily<Path>> fontFamilyPaths,
             TGS_FileCommonFavIcon favIconPng,
-            TGS_FuncMTUCE_OutTyped_In1<TGS_Url, TGS_Url> manipulateInjectCode,
+            TGS_FuncMTU_OutTyped_In1<TGS_Url, TGS_Url> manipulateInjectCode,
             Path dirDatTbl, Path dirDatPub, Path dirDatUsr, Path dirDatUsrTmp,
-            TGS_FuncMTUCE_OutTyped_In5<List<String>, String, String, Long, String, Boolean> libTableFileList_getFileNames_DataIn,
-            TGS_FuncMTUCE_OutTyped_In2<Path, String, String> libTableFileDir_datTblTblnameColname,
-            TGS_FuncMTUCE_OutTyped_In2<TGS_Url, String, Boolean> libTableFileGetUtils_urlUsrTmp,
-            TGS_FuncMTUCE_OutTyped_In1<String, CharSequence> libTableServletUtils_URL_SERVLET_FETCH_TBL_FILE,
-            TGS_FuncMTUCE_OutTyped_In1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_PUBLIC,
-            TGS_FuncMTUCE_OutTyped_In1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_USER,
+            TGS_FuncMTU_OutTyped_In5<List<String>, String, String, Long, String, Boolean> libTableFileList_getFileNames_DataIn,
+            TGS_FuncMTU_OutTyped_In2<Path, String, String> libTableFileDir_datTblTblnameColname,
+            TGS_FuncMTU_OutTyped_In2<TGS_Url, String, Boolean> libTableFileGetUtils_urlUsrTmp,
+            TGS_FuncMTU_OutTyped_In1<String, CharSequence> libTableServletUtils_URL_SERVLET_FETCH_TBL_FILE,
+            TGS_FuncMTU_OutTyped_In1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_PUBLIC,
+            TGS_FuncMTU_OutTyped_In1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_USER,
             TGS_Url bootloaderJs
     ) {
         return new TS_FileCommonConfig(PARALLEL,
@@ -165,14 +165,14 @@ public class TS_FileCommonConfig {
             String funcName, String fileNameLabel, TGS_Url url,
             List<String> requestedFileTypes, Path dirDat,
             List<TGS_FontFamily<Path>> fontFamilyPaths, TGS_FileCommonFavIcon favIconPng,
-            TGS_FuncMTUCE_OutTyped_In1<TGS_Url, TGS_Url> manipulateInjectCode,
+            TGS_FuncMTU_OutTyped_In1<TGS_Url, TGS_Url> manipulateInjectCode,
             Path dirDatTbl, Path dirDatPub, Path dirDatUsr, Path dirDatUsrTmp,
-            TGS_FuncMTUCE_OutTyped_In5<List<String>, String, String, Long, String, Boolean> libTableFileList_getFileNames_DataIn,
-            TGS_FuncMTUCE_OutTyped_In2<Path, String, String> libTableFileDir_datTblTblnameColname,
-            TGS_FuncMTUCE_OutTyped_In2<TGS_Url, String, Boolean> libTableFileGetUtils_urlUsrTmp,
-            TGS_FuncMTUCE_OutTyped_In1<String, CharSequence> libTableServletUtils_URL_SERVLET_FETCH_TBL_FILE,
-            TGS_FuncMTUCE_OutTyped_In1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_PUBLIC,
-            TGS_FuncMTUCE_OutTyped_In1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_USER,
+            TGS_FuncMTU_OutTyped_In5<List<String>, String, String, Long, String, Boolean> libTableFileList_getFileNames_DataIn,
+            TGS_FuncMTU_OutTyped_In2<Path, String, String> libTableFileDir_datTblTblnameColname,
+            TGS_FuncMTU_OutTyped_In2<TGS_Url, String, Boolean> libTableFileGetUtils_urlUsrTmp,
+            TGS_FuncMTU_OutTyped_In1<String, CharSequence> libTableServletUtils_URL_SERVLET_FETCH_TBL_FILE,
+            TGS_FuncMTU_OutTyped_In1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_PUBLIC,
+            TGS_FuncMTU_OutTyped_In1<String, CharSequence> libFileServletUtils_URL_SERVLET_FETCH_USER,
             TGS_Url bootloaderJs
     ) {
         this.PARALLEL = PARALLEL;

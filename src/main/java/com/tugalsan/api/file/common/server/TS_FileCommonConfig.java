@@ -20,7 +20,7 @@ public class TS_FileCommonConfig {
 
     public static int QR_WIDTH = 640;
     public static int QR_HEIGHT = 640;
-    public static float QR_MAGNIFY = 0.8f;
+    public static float QR_MAGNIFY = 0.9f;
 
     final private static TS_Log d = TS_Log.of(false, TS_FileCommonConfig.class);
     final public boolean PARALLEL;

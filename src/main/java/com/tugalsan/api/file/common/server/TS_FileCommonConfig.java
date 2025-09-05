@@ -235,7 +235,6 @@ public class TS_FileCommonConfig {
         this.bootloaderJs = bootloaderJs;
 
         this.fontItalic = false;
-        this.fontItalic = false;
         this.fontHeight = 12;
         this.fontColor = TS_FileCommonFontTags.CODE_TOKEN_FONT_COLOR_BLACK();
         this.runReport = false;

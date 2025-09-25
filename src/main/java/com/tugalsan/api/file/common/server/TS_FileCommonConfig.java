@@ -1,20 +1,16 @@
 package com.tugalsan.api.file.common.server;
 
-import com.tugalsan.api.function.client.maythrowexceptions.unchecked.TGS_FuncMTU_OutTyped_In1;
-import com.tugalsan.api.function.client.maythrowexceptions.unchecked.TGS_FuncMTU_OutTyped_In2;
-import com.tugalsan.api.function.client.maythrowexceptions.unchecked.TGS_FuncMTU_OutTyped_In5;
-import com.tugalsan.api.file.common.client.TGS_FileCommonFavIcon;
-import com.tugalsan.api.font.client.TGS_FontFamily;
-import com.tugalsan.api.font.server.TS_FontUtils;
-import com.tugalsan.api.list.client.*;
-import com.tugalsan.api.log.server.TS_Log;
+import module com.tugalsan.api.function;
+import module com.tugalsan.api.file.common;
+import module com.tugalsan.api.font;
+import module com.tugalsan.api.list;
+import module com.tugalsan.api.log;
+import module com.tugalsan.api.time;
+import module com.tugalsan.api.url;
+import module java.desktop;
 import java.nio.file.*;
-import com.tugalsan.api.time.client.*;
-import java.util.*;
-import com.tugalsan.api.url.client.TGS_Url;
-import com.tugalsan.api.url.client.parser.TGS_UrlParser;
-import java.awt.Font;
-import java.util.stream.IntStream;
+import java.util.List;
+import java.util.stream.*;
 
 public class TS_FileCommonConfig {
 

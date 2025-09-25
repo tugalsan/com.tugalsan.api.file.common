@@ -1,9 +1,9 @@
 package com.tugalsan.api.file.common.server;
 
-import com.tugalsan.api.url.client.TGS_Url;
-import java.awt.image.BufferedImage;
-import java.nio.file.Path;
-import java.util.Objects;
+import module com.tugalsan.api.url;
+import module java.desktop;
+import java.nio.file.*;
+import java.util.*;
 
 public abstract class TS_FileCommonAbstract {
 

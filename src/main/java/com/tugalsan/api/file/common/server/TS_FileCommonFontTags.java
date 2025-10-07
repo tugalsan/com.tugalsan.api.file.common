@@ -1,9 +1,9 @@
 package com.tugalsan.api.file.common.server;
 
 public class TS_FileCommonFontTags {
-    
-    private TS_FileCommonFontTags(){
-        
+
+    private TS_FileCommonFontTags() {
+
     }
 
     public static String CODE_SET_FONT_SIZE() {
@@ -41,6 +41,10 @@ public class TS_FileCommonFontTags {
 
     public static String CODE_TOKEN_FONT_COLOR_BLACK() {
         return "BLACK";
+    }
+
+    public static String CODE_TOKEN_FONT_COLOR_WHITE() {
+        return "WHITE";
     }
 
     public static String CODE_TOKEN_FONT_COLOR_YELLOW() {

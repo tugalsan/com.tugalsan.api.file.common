@@ -14,14 +14,13 @@ import java.util.stream.*;
 
 public class TS_FileCommonConfig {
 
-    public static boolean copyPageRequested = false;
-    
     public static int QR_WIDTH = 640;
     public static int QR_HEIGHT = 640;
     public static float QR_MAGNIFY = 0.9f;
 
     final private static TS_Log d = TS_Log.of(false, TS_FileCommonConfig.class);
     final public boolean PARALLEL;
+    public boolean copyPageRequested = false;
 
     final public List<TGS_FontFamily<Path>> fontFamilyPaths;
     final public List<TGS_FontFamily<Font>> fontFamilyFonts;

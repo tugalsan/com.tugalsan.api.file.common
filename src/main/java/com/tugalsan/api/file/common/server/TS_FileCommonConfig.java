@@ -9,11 +9,13 @@ import module com.tugalsan.api.time;
 import module com.tugalsan.api.url;
 import module java.desktop;
 import java.nio.file.*;
-import java.util.List;
+import java.util.*;
 import java.util.stream.*;
 
 public class TS_FileCommonConfig {
 
+    public static boolean copyPageRequested = false;
+    
     public static int QR_WIDTH = 640;
     public static int QR_HEIGHT = 640;
     public static float QR_MAGNIFY = 0.9f;
